@@ -1,0 +1,1010 @@
+% This tex file is available under a
+% Creative Commons Attribution-Share Alike license (CC BY-SA 2.0).
+% http://creativecommons.org/licenses/by-sa/2.0/
+% Copyright © 2013 Rodrigo Hausen
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese,brazil]{babel}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\usepackage{icomma} % para vírgula decimal / decimal comma
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{mediumgray}{rgb}{0.6,0.6,0.6}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+    rulecolor=,
+    basicstyle=\scriptsize,
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
+\definecolor{pinegreen}{RGB}{0,139,114}
+\newcommand{\comment}[1]{{\color{structure.fg!70!white}\footnotesize #1}}
+
+\newcommand{\WD}[1]{\fbox{#1}\hspace{-0.5pt}}
+
+\def\A{\texttt{A}}
+\def\B{\texttt{B}}
+\def\C{\texttt{C}}
+\def\D{\texttt{D}}
+\def\E{\texttt{E}}
+\def\F{\texttt{F}}
+
+\usetheme{Boadilla}
+%\usetheme{umbc2}
+\usefonttheme{structuresmallcapsserif}
+\usecolortheme{seahorse}
+
+\title{Aula 3: Aritmética, Representação de dados}
+\subtitle{Circuitos Digitais}
+\author{Rodrigo Hausen}
+\institute{CMCC -- UFABC} 
+\date{28 e 30 de janeiro de 2013}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+
+\vspace{-1cm}
+
+\begin{center}
+\url{http://compscinet.org/circuitos}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Multiplicação binária}
+
+\begin{itemize}
+\item Algoritmo da multiplicação: mesma idéia usada na base decimal.
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        11011
+   x \underline{     101}
+        11011
+       00000
+   + \underline{ 11011  }
+     10000111
+\end{Verbatim}
+\pause
+\item Note que a tabuada da multiplicação na base $2$ é muito mais fácil.
+\begin{center}
+\begin{tabular}{c|cc}
+$\times$ & 0 & 1 \\
+\hline
+       0 & 0 & 0 \\
+       1 & 0 & 1
+\end{tabular}
+\end{center}
+\pause
+\item Se $A$ tem $n$ algarismos e $B$ tem $m$ algarismos, então o produto $A \times B$ terá, no máximo, \pause $n+m$ algarismos.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Multiplicação binária}
+
+\textbf{Para casa}: escrever o algoritmo de multiplicação binária para números naturais.
+
+\newcommand{\onlytwo}[1]{\only<2>{#1}}
+\newcommand{\onlyth}[1]{\only<3-4>{#1}}
+\newcommand{\onlyfo}[1]{\only<4>{#1}}
+\newcommand{\onlyfi}[1]{\only<5>{#1}}
+
+\begin{itemize}
+\item Note que não é necessário armazenar todas as parcelas da soma ao mesmo tempo.
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        11011
+   x \underline{     101}
+     \onlytwo{   11011}\onlyth{  011011}\onlyfi{10000111}
+   \onlytwo{+   00000{\color{green}0} <- desloca 1}\onlyfo{+  11011{\color{green}00}<- desloca 2}
+\end{Verbatim}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%
+% DIVISAO
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+\pause
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+
+
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+    - \underline{101}
+       -1
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+    - \underline{101}        0
+       -1
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+     - \underline{101}       0
+        
+\end{Verbatim}
+
+\end{frame}
+
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+     - \underline{101}       0
+        11
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+     - \underline{101}       01
+        11
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        110111  |\hs\underline{  101  }
+                 01
+            
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        110111  |\hs\underline{  101  }
+      - \underline{101}      01
+          1  
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        110111  |\hs\underline{  101  }
+      - \underline{101}      011
+          1  
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+          1111  |\hs\underline{  101  }
+       - \underline{101}     011
+         -10  
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+          1111  |\hs\underline{  101  }
+       - \underline{101}     0110
+         -10  
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+          1111  |\hs\underline{  101  }
+        - \underline{101}    01101
+           10  
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+           101  |\hs\underline{  101  }
+         - \underline{101}   011011
+             0
+\end{Verbatim}
+
+\end{frame}
+
+   %%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\begin{itemize}
+\item Algoritmo da divisão longa: de novo, emprestamos a idéia da base decimal.
+
+\item Novamente, a tabuada binária facilita as contas. Os algarismos só podem ser $1$ ou $0$.
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+           101  |\hs\underline{  101  }
+         - \underline{101}   011011 \textsf{= quociente}
+             0 \textsf{= resto}
+\end{Verbatim}
+
+\end{frame}
+
+% /DIVISAO
+%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%
+% DIVISAO ALGORITMO
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+    - \underline{101{\color{green}00000}}
+       -100111
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+    - \underline{101{\color{green}00000}}   0
+       -100111
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+     - \underline{101{\color{green}0000}}   0
+        110111 
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+      10000111  |\hs\underline{  101  }
+     - \underline{101{\color{green}0000}}   01
+        110111 
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        110111  |\hs\underline{  101  }
+      - \underline{101{\color{green}000}}   01
+         01111 
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+        110111  |\hs\underline{  101  }
+      - \underline{101{\color{green}000}}   011
+         01111 
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+         01111  |\hs\underline{  101  }
+       - \underline{101{\color{green}00}}   0110\textsf{\ldots}
+         -\textsf{\ldots}
+\end{Verbatim}
+
+\vspace{44pt}
+
+\end{frame}
+
+     %%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária}
+
+\textbf{Para casa}: escrever, em pseudocódigo, o algoritmo da divisão binária para números naturais.
+
+\begin{itemize}
+\item Calcular $A \div B$, onde $A = a_{n-1} \ldots a_0$, $B = b_{m-1} \ldots b_0$ e $m \le n$
+\item Note que as subtrações ``da esquerda para a direita'', são, na verdade, subtrações do dividendo pelo divisor multiplicado por $2^i$, para $i = n-m \ldots 0$
+\end{itemize}
+
+\def\hs{\hspace{-1mm}}
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+         01111  |\hs\underline{  101  }
+       - \underline{101{\color{green}00}}   0110\textsf{\ldots}
+         -\textsf{\ldots}
+\end{Verbatim}
+
+\begin{itemize}
+\item Se a diferença é positiva, ela passa a ser o próximo dividendo.
+\item Pare quando $i = 0$.
+\end{itemize}
+
+\end{frame}
+
+
+% /DIVISAO ALGORITMO
+%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Divisão binária: divisão não-inteira}
+
+\begin{itemize}
+\item Note que se $A$ é múltiplo de $B$, o resultado da última subtração será $0$
+\pause
+\item E se $A$ não for múltiplo de $B$?
+\pause
+\item Podemos continuar a divisão, adicionando a vírgula (ponto, em inglês).
+\pause
+\item para cada algarismo adicionado depois da vírgula, multiplique o dividendo por $2$ (ou seja, adicione um $0$ à direita)
+\pause
+\item Pare quando o resultado tiver $k$ algarismos depois da vírgula.
+\end{itemize}
+
+Ex.: $110 \div 101$\\[12pt]
+
+\pause
+
+\textbf{Para casa}: escrever esse algoritmo.
+\end{frame}
+
+\begin{frame}
+\frametitle{Números racionais}
+
+\begin{itemize}
+\item O que acontece com os algoritmos da soma, subtração, multiplicação e divisão quando os números sendo operados não são inteiros?
+\pause
+\item Sem perder a generalidade, suporemos que $A$ e $B$ possuem $k$ algarismos depois da vírgula. (Se eles não tiverem a mesma quantidade de algarismos após a vírgula?)
+\begin{eqnarray*}
+A = a_{n-1} a_{n-2} \ldots a_1 a_0 & , & a_{-1} \ldots a_{-k} \\
+B = b_{m-1} a_{m-2} \ldots b_0 & , & b_{-1} \ldots b_{-k}
+\end{eqnarray*}
+\vspace{-12pt}
+\pause
+\item Caso mais fácil: divisão. Note que:
+$$
+\frac{A}{B} = \frac{A \times 2^k}{B \times 2^k} = \frac{a_{n-1} a_{n-2} \ldots a_1 a_0 a_{-1} \ldots a_{-k}}{b_{m-1} a_{m-2} \ldots b_0 b_{-1} \ldots b_{-k}}
+$$
+\vspace{-12pt}
+\pause
+Simplesmente ignore a vírgula!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Números racionais}
+
+\begin{itemize}
+\item Para a soma e a subtração: como os algoritmos são ``copiados'' da versão para números na base $10$, a solução é simples: ignore, inicialmente a vírgula. Após a soma, recoloque a vírgula no seu lugar (conte $k$ algarismos à direita).
+\pause
+\item Para a multiplicação: de novo, a inspiração vem da base decimal. Ignore, inicialmente a vírgula e, após a multiplicação, recoloque a vírgula no seu lugar (conte $\mathbf{2k}$ algarismos à direita).
+
+\end{itemize}
+
+\textbf{Para casa}:
+\begin{enumerate}[(1)]
+\item escreva as versões dos algoritmos da soma, subtração, multiplicação e divisão para números racionais sem sinal (positivos) com $k$ algarismos após a vírgula;
+\item altere os algoritmos para permitir números racionais com sinal.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representação numérica}
+
+\begin{itemize}
+\item Representação de números no papel: usamos tantos dígitos forem necessários.
+\item Limitado apenas pela quantidade de papel, tempo disponível para escrever os dígitos, paciência\ldots
+\end{itemize}
+
+\pause
+
+Número $\pi$:
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+3.14159265358979323846264338327950288419716939937510582097
+4944592307816406286208998628034825342117067982148086513282
+3066470938446095505822317253594081284811174502841027019385
+2110555964462294895493038196442881097566593344612847564823
+3786783165271201909145648566923460348610454326648213393607
+2602491412737245870066063155881748815209209628292540917153
+6436789259036001133053054882046652138414695194151160943305
+7270365759591953092186117381932611793105118548074462379...
+\end{Verbatim}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Representação numérica num computador digital}
+
+\begin{itemize}
+\item Recordando: em um computador digital qualquer informação, em última instância, é representada por um número.
+\pause
+\item Atualmente, os números são representados internamente em binário (por vários motivos, entre eles facilidade de fazer contas na base $2$).
+\pause
+\item Um computador digital possui espaço finito para guardar informações.
+\pause
+\item Por questões de eficiência, geralmente o processamento de dados (ou seja, números) não é feito algarismo binário por algarismo binário, e sim \textbf{por grupos de algarismos binários} de uma só vez.
+\end{itemize}
+
+\pause
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Bits e palavras}
+
+\begin{itemize}
+\item Abreviação: algarismo binário = \textbf{bit} (do inglês \textbf{b}inary dig\textbf{it})
+\pause
+\item A unidade natural de processamento de um determinado sistema é chamada \textbf{palavra de dado}; é, basicamente, uma sequência de bits com tamanho fixo que é processada em conjunto.\\[6pt]
+\hspace*{\fill}$MSB$\hspace{9em}$LSB$\hspace*{\fill}
+
+\vspace{-3pt}
+
+\hspace*{\fill}$\downarrow$\hspace{10.5em}$\downarrow$\hspace*{\fill}
+
+\vspace{-16pt}
+
+$$\underbrace{\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}}_{\text{tamanho } w = 11 \text{ bits}}$$\\
+\comment{MSB = Most Significant Bit = bit mais significativo,\\LSB = Least Significant Bit = bit menos significativo}
+\pause
+\item Tamanhos de palavras comuns são: $4$, $8$, $16$, $32$ e $64$ bits.
+\pause
+\item Nomes comuns para palavras:
+\begin{itemize}
+\item $8$ bits = \textbf{byte} (\textbf{b}inar\textbf{y} \textbf{te}rm) ou \textbf{octeto}
+\item $4$ bits = \textbf{nibble}\\\comment{\small(curiosidade: nibble, em inglês, significa ``mordidinha'' = ``small bite'')}
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representando números em palavras binárias}
+
+\textbf{Primeiro caso}: número inteiro sem sinal ($\ge 0$).\\[12pt]
+
+Como representar um número inteiro $A = (a_{n-1} a_{n-2} \ldots a_0)_2$ numa palavra de comprimento $w$?
+
+\only<1>{
+$$\underbrace{\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\ldots\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}\hspace{-0.5pt}\fbox{\phantom{a}}}_{w \text{ bits}}$$
+}%
+\only<2->{
+$$
+\underbrace{\fbox{0}\hspace{-0.5pt}\fbox{0}\raisebox{2.5pt}{\hspace{-0.5pt}\fbox{$a_{n-1}$}\hspace{-0.5pt}\fbox{$a_{n-2}$}\ldots\fbox{$a_2$}\hspace{-0.5pt}\fbox{$a_1$}\hspace{-0.5pt}\fbox{$a_0$}}}_{w \text{ bits}}
+$$
+}%
+
+\pause
+
+Qual é o maior inteiro sem sinal que podemos representar?\\[12pt]
+
+\pause
+
+\textbf{Exemplo}: quais inteiros sem sinal podemos representar com $3$ bits?
+
+\pause
+
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+000 001 010 011 100 101 110 111
+ 0   1   2   3   4   5   6   7
+\end{Verbatim}
+
+\pause
+
+De $0$ até $7 = 2^3 - 1$.
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representando números: inteiros sem sinal}
+
+Inteiros sem sinal em palavras binárias com $w$ bits.\\[12pt]
+
+\begin{tabular}{rcl}
+Palavra      &   &  Decimal \\
+ $00\ldots000$ & = &  $0$ \\
+ $00\ldots001$ & = &  $1$ \\
+ $00\ldots010$ & = &  $2$ \\
+               & \vdots & \\
+ $11\ldots110$ & = &  \only<1-3>{?}\only<4->{$2^w - 2$} \\
+ $11\ldots111$ & = &  \only<1-3>{?}\only<4->{$2^w - 1$} = maior inteiro sem sinal com $w$ bits \\
+ \uncover<3->{$100\ldots000$} & \uncover<3->{=} & \uncover<3->{$2^w$}
+\end{tabular}
+
+\pause
+
+\vspace{12pt}
+
+O próximo número na sequência, que não cabe em $w$ bits, é
+$$
+ ({\color{red}1}\hspace{-1pt}\underbrace{{\color{mediumgray}0}0\ldots0{\color{pinegreen}0}{\color{blue}0}}_{w\text{ bits}})_2 = {\color{blue}0}\cdot2^0 + {\color{pinegreen}0}\cdot2^1 + \ldots + {\color{mediumgray}0} \cdot 2^{w-1} + {\color{red}1} \cdot 2^w = 2^w
+$$
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representando números: inteiros com sinal}
+
+\begin{itemize}
+\item Precisamos reservar espaço na palavra para representar, além dos algarismos do número, alguma informação sobre o sinal.\pause
+\item Como só existem duas possibilidades para o sinal, podemos usar um dos bits para representar o sinal. \pause Sugestão:
+\begin{itemize}
+\item sinal $+$: bit de sinal $0$
+\item sinal $-$: bit de sinal $1$
+\end{itemize}
+$$
+\underbrace{\overbrace{\fbox{$\,\,\,s\!\!\!\!\!\!\phantom{a_{w-1}}$}}^{sinal}\hspace{-2pt}\overbrace{\fbox{$a_{w-2}$}\hspace{-0.5pt}\fbox{$a_{w-1}$}\ldots\fbox{$a_2$}\hspace{-0.5pt}\fbox{$a_1$}\hspace{-0.5pt}\fbox{$a_0$}}^{magnitude}}_{w \text{ bits}}
+$$
+\item Esta representação é conhecida como \textbf{sinal-magnitude}.
+\pause
+\item \textbf{Ex.:} inteiros representados em sinal-magnitude com $3$ bits
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+000 001 010 011 100 101 110 111
+ +0  +1  +2  +3  -0  -1  -2  -3
+\end{Verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Representação sinal-magnitude}
+
+\textbf{Menor número}: \WD{1}\WD{1}\WD{1}\ldots\WD{1}\WD{1} = \pause $-(\underbrace{11\ldots11}_{w-1\text{ uns}})_2$ = \pause $-(1\underbrace{00\ldots00}_{w-1\text{ zeros}} - 1)_2$\\[-6pt] = $-(2^{w-1} - 1) = -2^{w-1} + 1$\\[12pt]
+
+\pause
+
+\textbf{Maior número}: \WD{0}\WD{1}\WD{1}\ldots\WD{1}\WD{1} = +$2^{w-1} - 1$\\[12pt]
+
+\pause
+
+\textbf{Vantagens}
+
+\begin{itemize}
+\item simples de entender
+\item simples de implementar
+\end{itemize}
+
+\textbf{Desvantagens}
+
+\begin{itemize}
+\item zero tem duas representações: \WD{0}\WD{0}\ldots\WD{0} = $+0$ e \WD{1}\WD{0}\ldots\WD{0} = $-0$
+\item complica a aritmética: é necessário tratar o sinal separadamente na hora de fazer as contas de soma e subtração.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Representação em complemento de $2$}
+
+\begin{itemize}
+\item vimos que, uma maneira de fazer subtrações na forma $A - B$ era tomar o complemento a dois $\overline{B} + 1$ e fazer a soma $A + (\overline{B} + 1)$
+\item note que se $-B$ é um número negativo, então $-B = 0-B$
+\item suponha que estamos representando todos os números positivos em palavras binárias de tamanho $w$ na forma:
+$$
+\WD{\,0\,}\raisebox{2.5pt}{\WD{$a_{w-2}$}\WD{$a_{w-3}$}\ldots\WD{$a_1$}\WD{$a_0$}}
+$$
+\pause
+\item \textbf{Ex.:} Calcule $0 - (11)_{10}$ usando complemento de $2$ em palavras com $5$ bits, sendo que o primeiro bit $0$ representa sinal positivo.\\
+\hspace{2cm}
+$0$ = $\WD{0}\hspace{-1.5pt}\underbrace{\WD{0}\WD{0}\WD{0}\WD{0}}_{0000_2 = 0}$
+\hspace{1cm}
+$11_{10}$ = $\WD{0}\hspace{-1.5pt}\underbrace{\WD{1}\WD{0}\WD{1}\WD{1}}_{1011_2 = 11_{10}}$\\[6pt]\pause
+Complemento a dois de $01011$ = $10100 + 1$ = $10101$\\[6pt]\pause
+$-1011_2 = 0 - 1011_2 = 0 + 10101_2 = \WD{1}\WD{0}\WD{1}\WD{0}\WD{1}$, bit de sinal $1$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Representação em complemento de $2$}
+
+Representação de inteiros com sinal em complemento de $2$
+
+\begin{itemize}
+\item Números positivos
+$$
+    \raisebox{-2.5pt}{\WD{0}}\hspace{-1.8pt}\underbrace{\WD{$a_{w-2}$}\WD{$a_{w-3}$}\ldots\WD{$a_1$}\WD{$a_0$}}_{w-1\text{ bits}} = + (a_{w-2} a_{w-3} \ldots a_1 a_0)_2
+$$
+\item Números negativos
+$$
+    \raisebox{-2.5pt}{\WD{1}}\hspace{-1.8pt}\underbrace{\WD{$a_{w-2}$}\WD{$a_{w-3}$}\ldots\WD{$a_1$}\WD{$a_0$}}_{w-1\text{ bits}} = - (\overline{a_{w-2} a_{w-3} \ldots a_1 a_0} + 1)_2
+$$
+\item \textbf{Ex.:} a que número corresponde a palavra \WD{1}\WD{0}\WD{1}\WD{1}\WD{1}\WD{0}\WD{0} ?\\
+\pause
+Bit de sinal $1$ = número negativo.\\
+\pause
+$\overline{\texttt{011100}}$ + 1 = \texttt{100011} + 1 = \texttt{100100} = $36_{10}$\\
+\pause
+\WD{1}\WD{0}\WD{1}\WD{1}\WD{1}\WD{0}\WD{0} = $-36_{10}$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representação em complemento de $2$}
+
+Inteiros representados em complemento de dois em palavras de $3$ bits:
+
+\texttt{011} = $+3_{10}$\\
+\texttt{010} = $+2_{10}$\\
+\texttt{001} = $+1_{10}$\\
+\texttt{000} = $0_{10}$\\
+\pause
+\texttt{111} = $\uncover<3->{-1_{10} \hspace{5mm} =} -(\overline{\texttt{11}} + 1)_2 = -(00 + 1)_2$\\
+\pause
+\pause
+\texttt{110} = $\uncover<5->{-2_{10} \hspace{5mm} =} -(\overline{\texttt{10}} + 1)_2 = -(01 + 1)_2$\\
+\pause
+\pause
+\texttt{101} = $-3_{10}$\\
+\pause
+\texttt{100} = $-4_{10}$\\
+
+\pause
+
+\begin{itemize}
+\item note que o intervalo de representação não é simétrico
+\item como só há uma representação para $0$, é possível representar um inteiro negativo a mais
+\item somas/subtrações com esta representação são simples!\\
+$1 + (-3)$ = \WD{0}\WD{0}\WD{1} + \WD{1}\WD{0}\WD{1} = \WD{1}\WD{1}\WD{0} = $-2$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Representação em complemento de $2$}
+
+\textbf{Maior número}: \WD{0}\WD{1}\WD{1}\ldots\WD{1}\WD{1} = $+2^{w-1} - 1$ (como sinal-magnitude)\\[12pt]
+
+\pause
+
+\textbf{Menor número}: \WD{1}\WD{0}\WD{0}\ldots\WD{0}\WD{0} = $-(\overline{00\ldots00} + 1)_2 = - (11\ldots11 + 1)$\\[6pt]
+\pause
+\hfill$= - (1\underbrace{00\ldots00}_{w-1\text{ zeros}} - 1 + 1) \pause = -2^{w-1}$\\(uma unidade menor que sinal-magnitude)
+
+\pause
+
+\textbf{Vantagens}
+
+\begin{itemize}
+\item representação única para o zero
+\item somas e subtrações são feitas da mesma forma que para números sem sinal
+\end{itemize}
+
+\textbf{Desvantagens}
+
+\begin{itemize}
+\item não é tão intuitivo para nós (indiferente para computador)
+\item comparação não é tão simples: $1 = \WD{0}\WD{0}\WD{1} > \WD{1}\WD{0}\WD{1} -3$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Para casa}
+
+\begin{itemize}
+\item Pensar:
+\begin{itemize}
+\item como converter palavras de dados de tamanhos diferentes? Ex.: de 8 para 16 bits?
+\pause
+\item O que acontece se o resultado da soma/subtração/multiplicação de dois inteiros representados em palavras de $w$ bits não couber em $w$ bits? (Overflow)
+\pause
+\item Comportamentos distintos para representação sem sinal, sinal-magnitude e complemento de dois
+\pause
+\end{itemize}
+\item Seções do livro: 2-4, 2-5, 2-6 e 2-7
+\end{itemize}
+
+\end{frame}
+
+
+\end{document}
