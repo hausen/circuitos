@@ -5,7 +5,7 @@ Aulas e recursos para um curso de circuitos digitais.
 
 Este repositório contém apenas os arquivos fonte. Se você
 deseja somente os arquivos prontos para apresentação,
-vá para o [site da disciplina](https://compscinet.org/circuitos).
+vá para o [site da disciplina](http://compscinet.org/circuitos).
 
 Encontrou um erro? Tem sugestões?
 ---------------------------------
