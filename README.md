@@ -19,7 +19,7 @@ Para gerar os arquivos, é necessário ter instalados os programas
 GNU Make, LaTeX e Inkscape e as fontes LMSans10 e LMRoman10.
 No Debian/Ubuntu:
 ```
-apt-get install make texlive-full lmodern inkscape.
+apt-get install make texlive-full lmodern inkscape
 ```
 
 Para gerar cada arquivo, entre no diretório correspondende e
