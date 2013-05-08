@@ -1,0 +1,354 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage[left=2cm,top=2cm,bottom=2.5cm,right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[portuguese,brazil]{babel}
+
+\usepackage{amsmath}
+\usepackage{slashbox}
+\usepackage{array}
+\usepackage{icomma} % para vírgula decimal / decimal comma
+\usepackage{enumerate}
+
+\newcounter{questao}
+\setcounter{questao}{0}
+\newcommand{\questao}{%
+\vspace{12pt}%
+\refstepcounter{questao}%
+\noindent%
+\textbf{Questão \arabic{questao}.}%
+{ }%
+}
+
+\def\bit{\fbox{\vbox to 0.8cm{}\hspace*{0.8cm}}}
+
+\newcounter{floyd}
+
+\def\N{\vspace{8pt}\addtocounter{floyd}{1}\textbf{\arabic{floyd}.} }
+
+\begin{document}
+\begin{center}
+\Large{Circuitos Digitais -- Primeira Lista de Exercícios}
+\end{center}
+
+\noindent
+Observação: o início da lista é composto dos exercícios recomendados
+do livro-texto. Os exercícios nas últimas duas páginas da lista são novos
+(não estão no livro-texto).
+
+\vspace{12pt}
+
+\noindent
+\textbf{Problemas do Capítulo 2 do livro do Floyd.}
+
+\N Qual é o peso do dígito $6$ em cada um dos seguintes números decimais?
+
+(a) $1386$ \;\;\;\; (b) $54\,692$ \;\;\;\; (c) $671\,920$
+
+\N Expresse cada um dos numerais decimais como potência de dez:
+
+(a) $10$ \;\;\;\; (b) $100$ \;\;\;\; (c) $10\,000$ \;\;\;\;
+(d) $1\,000\,000$
+
+\N Determine o valor relativo de cada algarismo nos numerais decimais
+a seguir:
+
+(a) $471$ \;\;\;\; (b) $9356$ \;\;\;\; (c) $125\,000$
+
+\N Até que valor é possível contar com numerais decimais de $4$ algarismos?
+
+\N Converta para decimal os numerais binários a seguir:
+
+(a) 11 \;\;\;\; (b) 100 \;\;\;\; (c) 111 \;\;\;\; (d) 1000
+
+(e) 1001 \;\;\;\; (f) 1100 \;\;\;\; (g) 1011 \;\;\;\; (h) 1111
+
+\N Converta para decimal os numerais binários a seguir:
+
+(a) 1110 \;\;\;\; (b) 1010 \;\;\;\; (c) 11100 \;\;\;\; (d) 10000
+
+(e) 10101 \;\;\;\; (f) 11101 \;\;\;\; (g) 10111 \;\;\;\; (h) 11111
+
+\N Converta para decimal os numerais binários a seguir:
+
+(a) 110011,11 \;\;\;\; (b) 101010,01 \;\;\;\; (c) 1000001,111
+
+(d) 1111000,101 \;\;\;\; (e) 1011100,10101 \;\;\;\; (f) 1110001,0001
+
+(g) 1011010,1010 \;\;\;\; (h) 1111111,11111
+
+\N Qual o maior numeral decimal que pode ser representado pelas seguintes
+quantidades de dígitos binários (bits)?
+
+(a) dois \;\;\;\; (b) três \;\;\;\; (c) quatro \;\;\;\; (d) cinco \;\;\;\; (e) seis
+
+(f) sete \;\;\;\; (g) oito \;\;\;\; (h) nove \;\;\;\; (i) dez \;\;\;\; (j) onze
+
+\N Quantos bits são necessários para representar os seguintes numerais
+decimais?
+
+(a) 17 \;\;\;\; (b) 35 \;\;\;\; (c) 49 \;\;\;\; (d) 68
+
+(e) 81 \;\;\;\; (f) 114 \;\;\;\; (g) 132 \;\;\;\; (h) 205
+
+\N Determine a sequência binária para cada sequência decimal a seguir:
+
+(a) 0 a 7 \;\;\;\; (b) 8 a 15 \;\;\;\; (c) 16 a 31
+
+(d) 32 a 63 \;\;\;\; (e) 64 a 75
+
+\N Converta cada numeral decimal a seguir para binário:
+
+(a) 10 \;\;\;\; (b) 17 \;\;\;\; (c) 24 \;\;\;\; (d) 48
+(e) 61 \;\;\;\; (f) 93 \;\;\;\; (g) 125 \;\;\;\; (h) 186
+
+\N Converta cada numeral decimal a seguir para binário:
+
+(a) $0,32$ \;\;\;\; (b) $0,246$ \;\;\;\; (c) $0,0981$
+
+\N Converta cada numeral decimal a seguir para binário:
+
+(a) $15$ \;\;\;\; (b) 21 \;\;\;\; (c) 28 \;\;\;\; (d) 34
+
+(e) $40$ \;\;\;\; (f) 59 \;\;\;\; (g) 65 \;\;\;\; (h) 73
+
+\N Converta cada numeral decimal a seguir para binário:
+
+(a) $0,98$ \;\;\;\; (b) $0,347$ \;\;\;\; (c) $0,9028$
+
+\N Some os seguintes numerais binários (faça todas as contas na base $2$):
+
+(a) $11 + 01$ \;\;\;\; (b) $10 + 10$ \;\;\;\; (c) $101 + 11$
+
+(d) $111 + 110$ \;\;\;\; (e) $1001 + 101$ \;\;\;\; (f) $1101 + 1011$
+
+\N Use a subtração direta para os seguintes numerais binários
+(ou seja, faça as contas com ``empréstimos'' na base $2$):
+
+(a) $11 - 1$ \;\;\;\; (b) $101 - 100$ \;\;\;\; (c) $110 - 101$
+
+(d) $1110 - 11$ \;\;\;\; (e) $1100 - 1001$ \;\;\;\; (f) $11010 - 10111$
+
+\N Realize as seguintes multiplicações binárias (contas na base $2$):
+
+(a) $11 \times 11$ \;\;\;\; (b) $100 \times 10$ \;\;\;\; (c) $111 \times 101$
+
+(d) $1001 \times 110$ \;\;\;\; (e) $1101 \times 1101$ \;\;\;\;
+(f) $1110 \times 1101$
+
+\N Faça a operação de divisão binária conforme indicado
+
+(a) $100 \div 10$ \;\;\;\; (b) $1001 \div 11$ \;\;\;\; (c) $1100 \div 100$
+
+\N Determine o complemento a $1$ de cada numeral binário:
+
+(a) 101 \;\;\;\; (b) 110 \;\;\;\; (c) 1010
+
+(d) 11010111 \;\;\;\; (e) 1110101 \;\;\;\; (f) 00001
+
+\N Determine o complemento a $2$ de cada numeral binário:
+
+(a) 10 \;\;\;\; (b) 111 \;\;\;\; (c) 1001 \;\;\;\; (d) 1101
+(e) 11100 \;\;\;\; (f) 10011 \;\;\;\; (f) 10110000 \;\;\;\; (h) 00111101
+
+\N Expresse cada numeral decimal a seguir como uma palavra binária do
+tipo sinal-magnitude em $8$ bits:
+
+(a) $+29$ \;\;\;\; (b) $-85$ \;\;\;\; (c) $+100$ \;\;\;\; (e) $-123$
+
+\N Expresse cada numeral decimal a seguir como uma palavra binária do
+tipo complemento de $1$ em $8$ bits:
+
+(a) $-34$ \;\;\;\; (b) $+57$ \;\;\;\; (c) $-99$ \;\;\;\; $+115$
+
+\N Expresse cada numeral decimal a seguir como uma palavra binária do
+tipo complemento de $2$ em $8$ bits:
+
+(a) $+12$ \;\;\;\; (b) $-68$ \;\;\;\; (c) $+101$ \;\;\;\; $-125$
+
+\N Determine o valor decimal de cada palavra binária na forma
+sinal-magnitude a seguir:
+
+(a) 10011001 \;\;\;\; (b) 01110100 \;\;\;\; (c) 10111111
+
+\N Determine o valor decimal de cada palavra binária na forma
+complemento de $1$ a seguir:
+
+(a) 10011001 \;\;\;\; (b) 01110100 \;\;\;\; (c) 10111111
+
+\N Determine o valor decimal de cada palavra binária na forma
+complemento de $2$ a seguir:
+
+(a) 10011001 \;\;\;\; (b) 01110100 \;\;\;\; (c) 10111111
+
+\N ignorar
+
+\N ignorar
+
+\N Converta cada par de numerais decimais para binário e some-os usando
+a forma de complemento de $2$
+
+(a) $33$ e $15$ \;\;\;\; (b) $56$ e $-27$ \;\;\;\; (c) $-46$ e $25$ \;\;\;\;
+(d) $-110$ e $-84$
+
+\N Realize cada adição a seguir na forma do complemento de $2$:
+
+(a) $00010110 + 00110011$ \;\;\;\; (b) $01110000 + 10101111$
+
+\N Realize cada adição a seguir na forma do complemento de $2$:
+
+(a) $10001100 + 00111001$ \;\;\;\; (b) $11011001 + 11100111$
+
+\N Realize cada subtração a seguir na forma do complemento de $2$:
+
+(a) $00110011 - 00010000$ \;\;\;\; (b) $01100101 - 11101000$
+
+\N Multiplique $01101010$ por $11110001$ na forma do complemento de $2$.
+
+\N Divida $01000100$ por $00011001$ na forma do complemento de $2$.
+
+\N Converta para binário cada numeral hexadecimal a seguir:
+
+(a) $38_{16}$ \;\;\;\; (b) $59_{16}$ \;\;\;\; (c) A$14_{16}$ \;\;\;\;
+(d) $5$C$8_{16}$
+
+(e) $4100_{16}$ \;\;\;\; (f) FB$17_{16}$ \;\;\;\; (g) $8$A$9$D$_{16}$
+
+\N Converta para hexadecimal cada numeral binário a seguir:
+
+(a) $1110$ \;\;\;\; (b) $10$ \;\;\;\; (c) $10111$
+
+(d) $10100110$ \;\;\;\; (e) $1111110000$ \;\;\;\; (f) $100110000010$
+
+\N Converta para decimal cada numeral hexadecimal a seguir:
+
+(a) $23_{16}$ \;\;\;\; (b) $92_{16}$ \;\;\;\; (c) $1$A$_{16}$ \;\;\;\;
+(d) $8$D$_{16}$
+
+(e) F$3_{16}$ \;\;\;\; (f) EB$_{16}$ \;\;\; (g) $5$C$2_{16}$ \;\;\;\;
+(h) $700_{16}$
+
+\N Converta para hexadecimal cada numeral decimal a seguir:
+
+(a) $8$ \;\;\;\; (b) $14$ \;\;\;\; (c) $33$ \;\;\;\; (d) $52$
+(e) $284$ \;\;\;\; (f) $2890$ \;\;\;\; (g) $4019$ \;\;\;\; (h) $6500$
+
+\N Realize as seguintes adições:
+
+(a) $37_{16} + 29_{16}$ \;\;\;\; (b) A$0_{16} + 6$B$_{16}$ \;\;\;\;
+(c) FF$_{16} + $BB$_{16}$
+
+\N Realize as seguinres subtrações:
+
+(a) $51_{16} - 40_{16}$ \;\;\;\; (b) C$8_{16} - 3$A$_{16}$ \;\;\;\;
+(c) FD$_{16} - 88_{16}$
+
+\newpage
+
+\textbf{Exercícios adicionais} (não estão no livro-texto)
+ 
+\questao Faça as conversões de base pedidas, mostrando as divisões/multiplicações efetuadas, caso sejam necessárias. Para bases múltiplas/submúltiplas, faça a conversão usando agrupamento de dígitos.
+
+\vspace{3pt}
+
+\noindent
+\begin{tabular}{l l l}
+(a) $(1010)_2$ p/ base $10$ & (b) $(11101110)_2$ p/ base $10$ &
+    (c) $(1001,1101)_2$ p/ base $10$\\[3pt]
+(d) $(1518)_{10}$ p/ base $7$ & (e) $(134)_{10}$ p/ base $2$  & (f) $(0,7)_{10}$ p/ base $2$\\[3pt] % 1,011(0011)
+(f) $(11,8125)_{10}$ p/ base $2$ & (g) $(57,55)_{10}$ p/ base $2$ & (h) $(80,90625)_{10}$ p/ base $2$ \\[3pt]
+(i) $(1011,1101)_2$ p/ base $16$ & (j) $(1011,1101)_2$ p/ base $8$ &
+(k) $($DEAD$,$BEEF$)_{16}$ p/ base $2$ \\[3pt]
+($\ell$) $($DEAD$,$BEEF$)_{16}$ p/ base $10$
+\end{tabular}
+
+\questao Efetue as operações abaixo em binário. Para as subtrações, faça as contas duas vezes: usando o algoritmo padrão de subtração (com ``empréstimos'') e fazendo a conta usando complemento a $2$.
+
+\vspace{3pt}
+
+\noindent
+\begin{tabular}{l l l}
+(a) $10001+1111$            & (b) $1110+1001011$     & (c) $10,11+ 11100$ \\[3pt]
+(d) $11010,1+10110,01+111,1110$ & (e) $1100+1001011+11101$ & (f) $10101-1110$ \\[3pt]
+(g) $100000-11100$            & (h) $1011,001-11,011$ & (i) $1011,001-1101,011$ \\[3pt]
+(j) $11001 \times 101$  & (k) $11110 \times 110$  &  ($\ell$) $11110 \times 111$ \\[3pt]
+(m)  $111,10 \times 1,00101$ & (n) $10000001/101$ & (o) $1001010010/1011$ \\[3pt]
+(p) $11111101/1011$ & (q) $110010101/1001$ & (r) $1001111100/1100$ \\[3pt]
+(s) $110010101/100$ & (t) $1011010101/11$
+\end{tabular}
+
+\vspace{12pt}
+
+\questao Converta os números abaixo para a base $2$ e represente-os no formato pedido.
+
+\begin{enumerate}[(a)]
+\item $0$ (zero) como inteiro sem sinal em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+0$ (zero positivo) como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-0$ (zero negativo) como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+0$ (zero positivo) como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-0$ (zero negativo) como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $117$ como inteiro sem sinal em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+117$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-117$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+117$ como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-117$ como inteiro com sinal, em complemento a dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $175$ como inteiro sem sinal em uma palavra de $8$ bits.
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+175$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-175$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item\label{plus175} $+175$ como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item\label{minus175} $-175$ como inteiro com sinal, em complemento a dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\end{enumerate}
+
+\questao Converta as palavras de dados nos itens (\ref{plus175}) e
+(\ref{minus175}) de volta para um numeral na base decimal. Por que
+o valor obtido é diferente do original?
+
+\end{document}
+

@@ -1,0 +1,554 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage[left=2cm,top=2cm,bottom=2.5cm,right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[portuguese,brazil]{babel}
+
+\usepackage{amsmath}
+\usepackage{slashbox}
+\usepackage{array}
+\usepackage{icomma} % para vírgula decimal / decimal comma
+\usepackage{enumerate}
+
+\input{squarecells.inc}
+
+\def\nt{\overline}
+
+\newcounter{questao}
+\setcounter{questao}{0}
+\newcommand{\questao}{%
+\vspace{12pt}%
+\refstepcounter{questao}%
+\noindent%
+\textbf{Questão \arabic{questao}.}%
+{ }%
+}
+
+\newcounter{floyd}
+
+\def\N{\vspace{8pt}\addtocounter{floyd}{1}\textbf{\arabic{floyd}.} }
+
+\begin{document}
+\begin{center}
+\Large{Circuitos Digitais -- Segunda Lista de Exercícios}
+\end{center}
+
+\noindent
+Observação: o início da lista é composto dos problemas recomendados do livro-texto. Os exercícios nas últimas duas páginas da lista são novos (não estão no livro-texto).
+
+\vspace{12pt}
+
+\noindent
+\textbf{Problemas do Capítulo 4 do livro do Floyd.}
+
+\N Usando a notação booleana, escreva uma expressão que é $1$ toda vez que
+uma ou mais de suas variáveis $A, B, C, D$ for $1$.
+
+\N Escreva uma expressão que é $1$ somente se todas as variáveis
+$A, B, C, D, E$ forem $1$
+
+\N Escreva uma expressão que é $1$ quando uma ou mais das variáveis
+$A, B, C$ forem $0$.
+
+\N Avalie as seguintes expressões booleanas:
+
+(a) $0 + 0 + 1$ \;\;\;\; (b) $1+1+1$ \;\;\;\; (c) $1\cdot0\cdot0$ \;\;\;\;
+(d) $1\cdot1\cdot1$ \;\;\;\; (e) $1\cdot0\cdot1$ \;\;\;\;
+(f) $1\cdot1 + 0\cdot1\cdot1$
+
+\N Encontre os valores das variáveis que fazem com que cada termo-produto
+seja $1$ e cada termo-soma seja $0$:
+
+(a) $A \, B$ \;\;\;\; (b) $A \, \nt{B} \, C$ \;\;\;\; (c) $A + B$ \;\;\;\;
+(d) $\nt{A} + B + \nt{C}$
+
+(e) $\nt{A} + \nt{B} + C$ \;\;\;\; (f) $\nt{A} + B$ \;\;\;\;
+(g) $A \; \nt{B} \; \nt{C}$
+
+\N Encontre o valor de $X$ para todos os valores possíveis para as
+variáveis
+
+(a) $X = (A+B)C + B$ \;\;\;\; (b) $X = (\overline{A+B})C$ \;\;\;\;
+(c) $X = A\nt{B}C + AB$
+
+(d) $X = (A + B)(\nt{A} + B)$ \;\;\;\; (e) $X = (A + BC)(\nt{B} + \nt{C})$
+
+\N Identifique as regras da álgebra booleana nas quais as seguintes
+igualdades se baseiam:
+
+(a) $A \nt{B} + CD + A\nt{C}D + B = B + A\nt{B} + A\nt{C}D + CD$
+
+(b) $AB\nt{C}D + \nt{ABC} = D\nt{C}BA + \nt{CBA}$
+
+(c) $AB(CD + E\nt{F} + GH) = ABCD + ABE\nt{F} + ABGH$
+
+\N Identifique as regras da álgebra booleana nas quais as seguintes
+igualdades se baseiam:
+
+(a) $\nt{\nt{AB + CD}} + \nt{EF} = AB + CD + \nt{EF}$ \;\;\;\;
+(b) $A\nt{A}B + AB\nt{C} + AB\nt{B} = AB\nt{C}$
+
+(c) $A(BC + BC) + AC = A(BC) + AC$ \;\;\;\;
+(d) $AB(C + \nt{C}) + AC = AB + AC$
+
+(e) $A\nt{B} + A\nt{B}C = A \nt{B}$ \;\;\;\;
+(f) $ABC + \nt{AB} + \nt{ABC}D = ABC + \nt{AB} + D$
+
+\N Aplique os teoremas de DeMorgan a cada expressão:
+
+(a) $\nt{A + \nt{B}}$ \;\;\;\; (b) $\nt{\nt{A} B}$ \;\;\;\;
+(c) $\nt{A + B + C}$ \;\;\;\; (d) $\nt{ABC}$
+
+(e) $\nt{A(B+C)}$ \;\;\;\; (f) $\nt{AB} + \nt{CD}$ \;\;\;\;
+(g) $\nt{AB + CD}$ \;\;\;\; (h) $\nt{(A + \nt{B})(\nt{C} + D)}$
+
+\N Aplique os teoremas de DeMorgan a cada expressão:
+
+\vspace{3pt}
+
+(a) $\nt{\nt{A} B(C + \nt{D})}$ \;\;\;\; (b) $\nt{AB (CD + EF)}$
+
+\vspace{3pt}
+
+(c) $\overline{(A + \nt{B} + C + \nt{D})} + \nt{ABC\nt{D}}$ \;\;\;\;
+(d) $\nt{ ( \nt{ \nt{A} + B + C + D } )( \nt{ A\nt{B} \; \nt{C}D } ) }$
+
+\vspace{6pt}
+
+(e) $\nt{\nt{AB}(CD + \nt{E}F)(\nt{AB} + \nt{CD})}$
+
+\N Aplique os teoremas de DeMorgan a cada expressão:
+
+\vspace{3pt}
+
+(a) $\nt{ \nt{ (\nt{ABC}) (\nt{EFG}) } + \nt{ (\nt{HIJ}) (\nt{KLM}) } }$ \;\;\;\;
+(b) $\nt{(A + \nt{B\nt{C}} + CD)} + \nt{\nt{BC}}$
+
+\vspace{6pt}
+
+(c) $\nt{ \nt{ (\nt{A + B})(\nt{C+D})(\nt{E+F})(\nt{G+H}) }}$
+
+\vspace{6pt}
+
+\setcounter{floyd}{15}
+
+\N Construa a tabela verdade para cada uma das seguintes expressões
+booleanas:
+
+(a) $A + B$ \;\;\;\; (b) $AB$ \;\;\;\; (c) $AB + BC$
+
+(d) $(A+B)C$ \;\;\;\; (e) $(A+B)(\nt{B} + C)$
+
+\N Usando técnicas da álgebra booleana, simplifique as expressões
+seguintes o máximo possível:
+
+\vspace{3pt}
+
+(a) $A(A+B)$ \;\;\;\; (b) $A(\nt{A} + AB)$ \;\;\;\;
+(c) $BC + \nt{B}C$
+
+\vspace{6pt}
+
+(d) $A(A+\nt{A}B)$ \;\;\;\; (e) $A\nt{B}C + \nt{A}BC + \nt{A} \, \nt{B} C$
+
+\N Usando álgebra booleana, simplifique as seguintes expressões:
+
+\vspace{3pt}
+
+(a) $(A + \nt{B})(A+C)$ \;\;\;\;
+(b) $\nt{A}B + \nt{A}B\nt{C} + \nt{A}BCD + \nt{A}B\nt{C}\,\nt{D}E$
+
+\vspace{6pt}
+
+(c) $AB + \nt{AB}C + A$ \;\;\;\; (d) $(A + \nt{A})(AB + AB\nt{C})$
+
+\vspace{6pt}
+
+(e) $AB + (\nt{A} + \nt{B})C + AB$
+
+\N Usando álgebra booleana, simplifique cada expressão:
+
+(a) $BD + B(D + E) + \nt{D}(D+F)$ \;\;\;\;
+(b) $\nt{A}\,\nt{B}C + \nt{(A+B+\nt{C})} + \nt{A}\,\nt{B}\,\nt{C}D$
+
+(c) $(B+BC)(B + \nt{B}C)(B + D)$ \;\;\;\;
+(d) $ABCD + AB(\nt{CD}) + (\nt{AB})CD$
+
+(e) $ABC[AB + \nt{C}(BC + AC)]$
+
+\setcounter{floyd}{20}
+
+\N Converta as expressões seguintes para a forma de soma-de-produtos:
+
+(a) $(A+B)(C + \overline{B})$ \;\;\;\;
+(b) $(A + \overline{B}C)C$ \;\;\;\;
+(c) $(A+C)(AB+AC)$
+
+\N Converta as expressões seguintes para a forma de soma-de-produtos:
+
+(a) $AB + CD(A\nt{B} + CD)$ \;\;\;\;
+(b) $AB(\overline{B} \, \overline{C} + BD)$ \;\;\;\;
+(c) $A + B[AC + (B + \nt{C})D]$
+
+\N Defina o domínio de cada expressão do problema 21 e converta-as 
+para a forma \textbf{padrão} de soma-de-produtos.
+
+\N Converta cada expressão no problema 22 para a forma \textbf{padrão}
+de soma-de-produtos.
+
+\N Determine o valor binário de cada termo na forma padrão de
+soma-de-produtos do problema 23.
+
+\N Determine o valor binário de cada termo na forma padrão de
+soma-de-produtos do problema 24.
+
+\N Converta cada expressão no Problema 23 da forma padrão de
+soma-de-produtos para a forma padrão de produto-de-somas.
+
+\N Converta cada expressão no Problema 24 da forma padrão de
+soma-de-produtos para a forma padrão de produto-de-somas.
+
+\N Escreva a tabela verdade para cada uma das seguintes expressões
+na forma padrão soma-de-produtos:
+
+\vspace{3pt}
+
+(a) $A \nt{B} C + \nt{A} B \nt{C} + ABC$ \;\;\;\;
+(b) $\nt{X}YZ + \nt{X}\,\nt{Y}\,Z + XY\nt{Z} + X\nt{Y}Z + \nt{X}YZ$
+
+\N Escreva a tabela verdade para cada uma das seguintes expressões
+na forma padrão soma-de-produtos:
+
+\vspace{3pt}
+
+(a) $\nt{A}B\nt{C}D + \nt{A}BC\nt{D} + A\nt{B}\,\nt{C}D + \nt{A}\,\nt{B}\,\nt{C}\,\nt{D}$
+
+\vspace{6pt}
+
+(b) $WXYZ +WXY\nt{Z} + \nt{W}XYZ + W\nt{X}YZ + WX\nt{Y}Z$
+
+\N Escreva a tabela verdade para cada uma das seguintes expressões
+na forma soma-de-produtos (não-padrão):
+
+\vspace{3pt}
+
+(a) $\nt{A}B + AB\nt{C} + \nt{A} \, \nt{C} + A \nt{B} C$ \;\;\;\;
+
+\vspace{6pt}
+
+(b) $\nt{X} + Y\nt{Z} + WZ + X\nt{Y}Z$
+
+%\N Escreva a tabela verdade para cada uma das seguintes expressões
+%na forma padrão produto-de-somas:
+%
+%\vspace{3pt}
+%
+%(a) $(\nt{A} + \nt{B} + \nt{C})(A + B + C)(A + \nt{B} + C)$
+%
+%\vspace{6pt}
+%
+%(b) $(\nt{A} + B + \nt{C} + D)(A + \nt{B} + C + \nt{D})(A + \nt{B} + \nt{C} + D)(\nt{A} + B + C + \nt{D})$
+%
+%\N Escreva a tabela verdade para cada uma das seguintes expressões
+%na forma padrão produto-de-somas:
+
+\setcounter{floyd}{33}
+
+\N Para cada tabela verdade abaixo, determine uma expressão na forma
+padrão soma-de-produtos:
+
+(a) \begin{tabular}{c@{}c@{}c|c}
+$A$ & $B$ & $C$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  0 \\
+ 0  &  0  &  1  &  1 \\
+ 0  &  1  &  0  &  0 \\
+ 0  &  1  &  1  &  0 \\
+ 1  &  0  &  0  &  1 \\
+ 1  &  0  &  1  &  1 \\
+ 1  &  1  &  0  &  0 \\
+ 1  &  1  &  1  &  1
+\end{tabular}
+\hfill
+(b) \begin{tabular}{c@{}c@{}c|c}
+$A$ & $B$ & $C$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  0 \\
+ 0  &  0  &  1  &  0 \\
+ 0  &  1  &  0  &  0 \\
+ 0  &  1  &  1  &  0 \\
+ 1  &  0  &  0  &  0 \\
+ 1  &  0  &  1  &  1 \\
+ 1  &  1  &  0  &  1 \\
+ 1  &  1  &  1  &  1
+\end{tabular}
+\hfill
+(c) \begin{tabular}{c@{}c@{}c@{}c|c}
+$A$ & $B$ & $C$ & $D$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  0  &  1 \\
+ 0  &  0  &  0  &  1  &  1 \\
+ 0  &  0  &  1  &  0  &  0 \\
+ 0  &  0  &  1  &  1  &  1 \\
+ 0  &  1  &  0  &  0  &  0 \\
+ 0  &  1  &  0  &  1  &  1 \\
+ 0  &  1  &  1  &  0  &  1 \\
+ 0  &  1  &  1  &  1  &  0 \\
+ 1  &  0  &  0  &  0  &  0 \\
+ 1  &  0  &  0  &  1  &  1 \\
+ 1  &  0  &  1  &  0  &  0 \\
+ 1  &  0  &  1  &  1  &  0 \\
+ 1  &  1  &  0  &  0  &  1 \\
+ 1  &  1  &  0  &  1  &  0 \\
+ 1  &  1  &  1  &  0  &  0 \\
+ 1  &  1  &  1  &  1  &  0 \\
+\end{tabular}
+\hfill
+(d) \begin{tabular}{c@{}c@{}c@{}c|c}
+$A$ & $B$ & $C$ & $D$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  0  &  0 \\
+ 0  &  0  &  0  &  1  &  0 \\
+ 0  &  0  &  1  &  0  &  1 \\
+ 0  &  0  &  1  &  1  &  0 \\
+ 0  &  1  &  0  &  0  &  1 \\
+ 0  &  1  &  0  &  1  &  1 \\
+ 0  &  1  &  1  &  0  &  0 \\
+ 0  &  1  &  1  &  1  &  1 \\
+ 1  &  0  &  0  &  0  &  0 \\
+ 1  &  0  &  0  &  1  &  0 \\
+ 1  &  0  &  1  &  0  &  0 \\
+ 1  &  0  &  1  &  1  &  1 \\
+ 1  &  1  &  0  &  0  &  1 \\
+ 1  &  1  &  0  &  1  &  0 \\
+ 1  &  1  &  1  &  0  &  0 \\
+ 1  &  1  &  1  &  1  &  1 \\
+\end{tabular}
+
+\N Desenhe um mapa de Karnaugh para $3$ variáveis e rotule cada célula de
+acordo com o seu valor binário
+
+\N Desenhe um mapa de Karnaugh para $4$ variáveis e rotule cada célula de
+acordo com o seu valor binário
+
+\N Escreva o termo-produto padrão para cada célula em um mapa de
+Karnaugh de $3$ variáveis.
+
+\N Use o mapa de Karnaugh para encontrar a forma mínima de soma-de-produtos
+para cada expressão:
+
+\vspace{3pt}
+
+(a) $\nt{A} \, \nt{B} \, \nt{C} + \nt{A} \, \nt{B} \, C + A \nt{B} C$
+\;\;\;\;
+(b) $AC(\nt{B} + C)$
+
+\vspace{6pt}
+
+(c) $\nt{A}(BC + B\nt{C}) + A(BC + B\nt{C})$ \;\;\;\;
+(d) $\nt{A} \, \nt{B} \, \nt{C} + A \nt{B} \, \nt{C} + \nt{A} B \nt{C} +
+     A B \nt{C}$
+
+\N Use o mapa de Karnaugh para simplificar cada expressão para a forma
+mínima de soma-de-produtos:
+
+\vspace{3pt}
+
+(a) $\nt{A} \, \nt{B} \, \nt{C} + A \nt{B} C + \nt{A} BC + AB\nt{C}$ \;\;\;\;
+(b) $AC[\nt{B} + B(B+\nt{C})]$
+
+\vspace{6pt}
+
+(c) $DE\nt{F} + \nt{D}E\nt{F} + \nt{D}\,\nt{E}\,\nt{F}$
+
+\N Expanda cada expressão para a forma padrão de soma-de-produtos:
+
+\vspace{3pt}
+
+(a) $AB + A\nt{B}C + ABC$ \;\;\;\; (b) $A + BC$
+
+\vspace{6pt}
+
+(c) $A \nt{B} \, \nt{C} D + A C \nt{D} + B \nt{C} D + \nt{A}BC\nt{D}$ \;\;\;\;
+(d) $A\nt{B} + A \nt{B} \, \nt{C} D + CD + B \nt{C} D + ABCD$
+
+\N Minimize cada expressão encontrada no Problema 40 usando mapas
+de Karnaugh.
+
+\N Use um mapa de Karnaugh para reduzir cada expressão à forma mínima de
+soma-de-produtos:
+
+(a) $A + B \nt{C} + CD$
+
+\vspace{6pt}
+
+(b) $\nt{A} \, \nt{B} \, \nt{C} \, \nt{D} + \nt{A} \, \nt{B} \, \nt{C} D +
+ABCD + ABC\nt{D}$
+
+\vspace{6pt}
+
+(c) $\nt{A} \, \nt{B} ( \nt{C} \, \nt{D} + \nt{C} D) +
+\nt{A} \, \nt{B} ( \nt{C} \, \nt{D} + C \nt{D}) +
+A \nt{B} \, \nt{C} D$
+
+\vspace{6pt}
+
+(d) $(\nt{A} \, \nt{B} + A \nt{B})(CD + C\nt{D})$
+
+\vspace{6pt}
+
+(e) $\nt{A} \, \nt{B} + A \nt{B} + CD + C\nt{D}$
+
+\N Reduza a função lógica especificada na tabela verdade abaixo à sua
+forma mínima de soma-de-produtos usando um mapa de Karnaugh:
+
+\hspace*{\fill}\begin{tabular}{ccc|c}
+\multicolumn{3}{c}{entradas} & saída \\
+$A$ & $B$ & $C$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  1 \\
+ 0  &  0  &  1  &  1 \\
+ 0  &  1  &  0  &  0 \\
+ 0  &  1  &  1  &  1 \\
+ 1  &  0  &  0  &  1 \\
+ 1  &  0  &  1  &  1 \\
+ 1  &  1  &  0  &  0 \\
+ 1  &  1  &  1  &  1
+\end{tabular}\hspace*{\fill}
+
+\N Reduza a função lógica especificada na tabela verdade abaixo à sua
+forma mínima de soma-de-produtos usando um mapa de Karnaugh:
+
+
+\hspace*{\fill}\begin{tabular}{c@{\,}c@{\,}c@{\,}c|c}
+\multicolumn{4}{c}{entradas} & saída \\
+$A$ & $B$ & $C$ & $D$ & $X$ \\
+\hline
+ 0  &  0  &  0  &  0  &  0 \\
+ 0  &  0  &  0  &  1  &  0 \\
+ 0  &  0  &  1  &  0  &  1 \\
+ 0  &  0  &  1  &  1  &  0 \\
+ 0  &  1  &  0  &  0  &  1 \\
+ 0  &  1  &  0  &  1  &  1 \\
+ 0  &  1  &  1  &  0  &  0 \\
+ 0  &  1  &  1  &  1  &  1 \\
+ 1  &  0  &  0  &  0  &  0 \\
+ 1  &  0  &  0  &  1  &  0 \\
+ 1  &  0  &  1  &  0  &  0 \\
+ 1  &  0  &  1  &  1  &  1 \\
+ 1  &  1  &  0  &  0  &  1 \\
+ 1  &  1  &  0  &  1  &  0 \\
+ 1  &  1  &  1  &  0  &  0 \\
+ 1  &  1  &  1  &  1  &  1 \\
+\end{tabular}\hspace*{\fill}
+
+\newpage
+
+\textbf{Exercícios adicionais} (não estão no livro-texto)
+
+\questao Obtenha o valor de $X$ nas seguintes expressões lógicas, considerando os seguintes casos: i) $A = 1, B = 1, C = 0, D = 1$; \quad ii) $A = 0, B = 1, C = 0, D = 0$; \\ iii) $A = 1, B = 1, C = 1, D = 1$; \quad iv) $A = 1, B = 0, C = 1, D = 0$
+\label{q:explog}
+
+\begin{enumerate}[(a)]
+\item $X = A(B \oplus C)$
+
+\item $X = (\overline{A + B}) (C \oplus (A + \overline{D}))$
+
+\item $X = B \overline{C} A + \overline{ ( \overline{C} \oplus D ) }$
+
+\item $X = ( (A + \overline{ \overline{B} \oplus D }) \cdot ( \overline{C} + A) + B ) \cdot \overline{A +  B}$
+
+\item $X = A \oplus B + \overline{C} B + \overline{A}$
+\end{enumerate}
+
+\questao Monte as tabelas verdade para cada uma das expressões da questão~\ref{q:explog}.
+
+\questao Use tabelas verdade para demonstrar que as Leis de DeMorgan, listadas abaixo, são válidas:
+
+\begin{enumerate}[(a)] 
+\item $\overline{A \cdot B} = \overline{A} + \overline{B}$
+\item $\overline{A + B} = \overline{A} \cdot \overline{B}$
+\end{enumerate}
+
+\questao Escreva uma expressão para uma função $F(A,B,C,D)$ que é $1$
+somente quando:
+
+\begin{enumerate}[(a)]
+\item uma única variável é $1$;
+\item exatamente duas variáveis são $1$;
+\item duas ou três variáveis são $1$;
+\item entre duas e quatro variáveis são $1$;
+\item até três variáveis são $1$;
+\end{enumerate}
+
+\questao Simplifique as seguintes expressões:
+
+\begin{enumerate}[(a)]
+\item $XY + XY$
+\item $(X + Y) (X + \overline{Y})$
+\item $XZ + XY\overline{Z}$
+\item $(A + 1)\cdot(B \cdot 0) + D \cdot D + 1$
+\item $(A + 1) \cdot B \overline{B} + A + C \cdot C + C \cdot 0 + C$
+\end{enumerate}
+
+\questao Simplifique os mapas de Karnaugh abaixo e determine a expressão lógica  como soma de produtos após a simplificação.
+
+\noindent
+(a)
+\begin{squarecells}{5}
+\backslashbox{$x$\kern-1em}{\kern-1em$y z$}
+      & $00$ & $01$ & $11$ & $10$ \nl
+ $0$  &  1   &  0   &  0   &   1  \nl
+ $1$  &  1   &  0   &  1   &   1  \nl
+\end{squarecells}
+\hspace{.1cm}
+(b)
+\begin{squarecells}{5}
+\backslashbox{$xy$\kern-1em}{\kern-1em$z w$}
+       & $00$ & $01$ & $11$ & $10$ \nl
+ $00$  &  1   &  1   &  0   &   1  \nl
+ $01$  &  1   &  0   &  0   &   1  \nl
+ $11$  &  1   &  0   &  0   &   1  \nl
+ $10$  &  1   &  1   &  0   &   1  \nl
+\end{squarecells}
+\hspace{.1cm}
+(c)
+\begin{squarecells}{5}
+\backslashbox{$ab$\kern-1em}{\kern-1em$cd$}
+       & $00$ & $01$ & $11$ & $10$ \nl
+ $00$  &  1   &  0   &  0   &   1  \nl
+ $01$  &  0   &  0   &  1   &   0  \nl
+ $11$  &  0   &  1   &  0   &   0  \nl
+ $10$  &  1   &  0   &  0   &   1  \nl
+\end{squarecells}
+
+\vspace{12pt}
+
+(d)
+\begin{squarecells}{5}
+\backslashbox{$gh$\kern-1em}{\kern-1em$ij$}
+       & $00$ & $01$ & $11$ & $10$ \nl
+ $00$  &  0   &  1   &  1   &   0  \nl
+ $01$  &  1   &  0   &  0   &   1  \nl
+ $11$  &  1   &  0   &  0   &   1  \nl
+ $10$  &  0   &  1   &  1   &   0  \nl
+\end{squarecells}
+\hspace{.1cm}
+(e)
+\begin{squarecells}{5}
+\backslashbox{$gh$\kern-1em}{\kern-1em$ij$}
+       & $00$ & $01$ & $11$ & $10$ \nl
+ $00$  &  0   &  1   &  1   &   0  \nl
+ $01$  &  1   &  1   &  1   &   1  \nl
+ $11$  &  1   &  1   &  1   &   1  \nl
+ $10$  &  0   &  1   &  1   &   0  \nl
+\end{squarecells}
+
+\questao Faça o mapa de Karnaugh para cada uma das expressões na
+questão~\ref{q:explog}, efetue as simplificações possíveis e escreva-as
+como soma de produtos.
+
+\end{document}
+
