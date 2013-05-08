@@ -1,0 +1,169 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage[left=1.5cm,top=1.5cm,bottom=1.5cm,right=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[portuguese,brazil]{babel}
+
+\usepackage{amsmath}
+\usepackage{slashbox}
+\usepackage{array}
+\usepackage{icomma} % para vírgula decimal / decimal comma
+\usepackage{enumerate}
+
+\newcounter{questao}
+\setcounter{questao}{0}
+\newcommand{\questao}{%
+\vspace{12pt}%
+\refstepcounter{questao}%
+\noindent%
+\textbf{Exercício \arabic{questao}.}%
+{ }%
+}
+
+\begin{document}
+\begin{center}
+\Large{Circuitos Digitais -- Aula 6 -- Exercícios}
+\end{center}
+
+\questao Faça as conversões de base pedidas, mostrando as divisões/multiplicações efetuadas, caso sejam necessárias.
+
+(a) $(57,55)_{10}$ p/ binário \,\;\;\;\;\; (b) $(1011,1101)_2$ p/ decimal
+\;\;\;\;\;\;\; (c) $(1011,1101)_2$ p/ base 16
+
+(d) $(1011,1101)_2$ p/ base $8$ \; (e) $($DEAD$,$BEEF$)_{16}$ p/ binário
+\; (f) $($DEAD$,$BEEF$)_{16}$ p/ decimal
+
+\questao Efetue as operações abaixo em binário. Para as subtrações, faça as contas duas vezes: usando o algoritmo padrão de subtração (com ``empréstimos'') e fazendo a conta usando complemento a 2.
+
+(a) $11010,1 + 10110,01 + 111,1110$ \;\;\;\;
+(b) $10101 - 1110$ \;\;\;\;
+(c) $1011001 - 1100011$
+
+(d) $111,10 \times 1,00101$ \hspace{2.9cm} (e) $10010101 \div 1001$
+
+\def\bit{\fbox{\vbox to 0.6cm{}\hspace*{0.5cm}}}
+
+\questao Converta os números abaixo para a base $2$ e represente-os no formato pedido.
+
+\begin{enumerate}[(a)]
+\item $0$ (zero) como inteiro sem sinal em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+0$ (zero positivo) como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-0$ (zero negativo) como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+0$ (zero positivo) como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-0$ (zero negativo) como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $117$ como inteiro sem sinal em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+117$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-117$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+117$ como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-117$ como inteiro com sinal, em complemento a dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $175$ como inteiro sem sinal em uma palavra de $8$ bits.
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $+175$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item $-175$ como inteiro com sinal, em sinal-magnitude, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item\label{plus175} $+175$ como inteiro com sinal, em complemento de dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\item\label{minus175} $-175$ como inteiro com sinal, em complemento a dois, em uma palavra de $8$ bits
+
+\bit\bit\bit\bit\bit\bit\bit\bit
+
+\end{enumerate}
+
+\questao Converta as palavras de dados nos itens (\ref{plus175}) e
+(\ref{minus175}) de volta para um numeral na base decimal. Por que
+o valor obtido é diferente do original?
+
+
+\questao Considere duas variáveis lógicas, $C$ -- que indica se \textbf{chove} -- e $F$ -- que indica se faz \textbf{frio}, e as funções lógicas abaixo:
+
+\begin{itemize}
+\item $P$ -- o tempo está \textbf{péssimo} quando \textbf{chove e faz frio};
+\item $R$ -- o tempo está \textbf{ruim} quando \textbf{chove ou faz frio};
+\item $M$ -- o tempo está \textbf{mais ou menos} quando \textbf{chove mas não faz frio, ou vice-versa};
+\item $B$ -- o tempo está \textbf{bom} quando \textbf{não chove nem está frio};
+\item $S$ -- o tempo está \textbf{seco} quando \textbf{não chove}.
+\end{itemize}
+
+(a) Complete as tabelas verdade abaixo, onde $1$ representa \emph{verdadeiro} e
+$0$ representa \emph{falso}.
+
+\begin{center}
+\begin{tabular}{|cc||c|c|c|c|c|}
+\hline
+$C$ & $F$ & $P$ & $R$ & $M$ & $B$ & $S$ \\
+\hline
+$0$ & $0$ &     &     &     &     &     \\
+$0$ & $1$ &     &     &     &     &     \\
+$1$ & $0$ &     &     &     &     &     \\
+$1$ & $1$ &     &     &     &     &     \\
+\hline
+\end{tabular}
+\end{center}
+
+(b) Deduza expressões lógicas para as funções.
+
+(c) Qual o contrário de $R$ -- tempo ruim? E de $M$ -- tempo mais ou menos?
+
+\questao Escreva a tabela verdade de cada uma das expressões abaixo e
+represente-as na forma padrão de soma-de-produtos.\\
+
+\hfill (a) $X + \overline{Y + Z}$ \hfill (b) $\overline{X}(Y + Z) + XY$
+\hfill (c) $\overline{\overline{X + Y} + Z}$ \hspace*{\stretch{1}}
+
+\questao Construa o mapa de Karnaugh de:\\
+
+\hfill (a) $F(A,B,C) = AB + \overline{B}C + AC$
+\hfill (b) $Z = \overline{A}BD + BC\overline{D} + \overline{B} \, \overline{C} D + A \overline{B} \, \overline{D}$ \hspace*{\stretch{1}}
+
+\questao Escreva na forma mínima de soma-de-produtos:
+$$\overline{A} \, \overline{B} C D E + 
+ \overline{A} B \overline{C} \, \overline{D} E +
+ A B \overline{C} D E +
+ \overline{A} B \overline{C} D E +
+ \overline{A} B C D E +
+ A B \overline{C} \, \overline{D} E +
+ (\overline{A + B}) E$$
+
+\end{document}
+

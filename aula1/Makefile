@@ -5,8 +5,7 @@
 NAME=aula1
 SVGS=$(wildcard images/*.svg)
 IMGS=$(SVGS:.svg=.pdf)
-HOSTREPOS=repository
-DIRREPOS=public_html/hausen/courses/circuitos/aulas
+include ../Makefile.inc
 
 $(NAME).pdf: $(NAME).tex $(IMGS)
 	pdflatex $<

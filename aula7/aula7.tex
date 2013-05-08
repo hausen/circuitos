@@ -1,0 +1,200 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese,brazil]{babel}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\usepackage{alltt}
+%\usepackage[pdf]{pstricks}
+%\usepackage{auto-pst-pdf}
+%\usepackage{icomma} % para vírgula decimal / decimal comma
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{mediumgray}{rgb}{0.6,0.6,0.6}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+    rulecolor=,
+    basicstyle=\scriptsize,
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+\definecolor{pinegreen}{RGB}{0,139,114}
+\definecolor{pgr}{RGB}{0,139,114}
+
+\definecolor{aquamarine}{RGB}{0,181,190}
+\definecolor{aqm}{RGB}{0,181,190}
+
+\definecolor{skyblue}{RGB}{100,227,251}
+\definecolor{skb}{RGB}{100,227,251}
+
+
+\newcommand{\WD}[1]{\fbox{#1}\hspace{-0.5pt}}
+\newcommand{\FWD}[1]{%
+\fbox{%
+\vbox to 10pt{\vfil%
+\hbox to 0.8cm{\hfill#1\hfill}%
+\vfil}%
+}\hspace{-0.5pt}%
+}
+
+\def\A{\texttt{A}}
+\def\B{\texttt{B}}
+\def\C{\texttt{C}}
+\def\D{\texttt{D}}
+\def\E{\texttt{E}}
+\def\F{\texttt{F}}
+
+\usetheme{Boadilla}
+%\usetheme{umbc2}
+\usefonttheme{structuresmallcapsserif}
+\usecolortheme{seahorse}
+
+\title{Aula 11: Lógica e circuitos digitais}
+\subtitle{Portas lógicas}
+\author{Rodrigo Hausen}
+\institute{\url{hausen@usp.br}} 
+\date{16 de setembro de 2011}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+
+\vspace{-1cm}
+
+\begin{center}
+\url{http://cuco.pro.br/ach2034}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Apresentação}
+
+\begin{itemize}
+\item 1. Bases Teóricas
+\begin{itemize}
+\item 1.0. Sistemas de numeração
+\item 1.1. Representação de dados
+\item {\color{blue} \textbf{1.2. Lógica e circuitos digitais}}
+\end{itemize}
+\item 2. Organização de computadores
+\item 3. Histórico, evolução e performance
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+ \frametitle{Circuitos elétricos}
+
+\begin{itemize}
+    \item O circuito mais simples do mundo:\\
+    \textbf{como acender uma lâmpada}
+\end{itemize}
+
+\centering
+\includegraphics[width=0.8\textwidth]{images/circsimples.png}
+
+\pause
+
+\begin{itemize}
+    \item Problema: a lâmpada fica sempre acesa.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+Ver arquivos:
+
+\begin{verbatim}
+01_simples.cs1
+02_simples.cs1	
+03_and.cs1	
+04_and.cs1
+04_or.cs1
+05_not.cs1
+06_xor.cs1
+\end{verbatim}
+
+Os arquivos abrem com o CircuitShop:
+
+\url{http://www.cherrywoodsystems.com/cshop2.zip}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Controlando um interruptor com sinal elétrico}
+
+\begin{itemize}
+\item Solução: use um eletroíma!
+\end{itemize}
+
+\only<1>{%
+\centering%
+\includegraphics{images/magneto1.png}%
+}%
+\only<2>{%
+\centering%
+\includegraphics{images/magneto2.png}%
+}%
+\only<3>{%
+\centering%
+\includegraphics{images/magneto3.png}%
+}
+\only<4>{%
+\centering%
+\includegraphics{images/magneto4.png}%
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Relé}
+
+\begin{itemize}
+\item Relé: componente eletromecânico composto por um eletroíma e um interruptor
+\end{itemize}
+
+Relé normalmente fechado (NF):
+
+\centering%
+\includegraphics{images/magneto5.png}%
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Negando um sinal elétrico}
+
+\only<1>{\includegraphics[width=0.9\textwidth]{images/relay_not_0.png}}
+\only<2>{\includegraphics[width=0.9\textwidth]{images/relay_not_1.png}}
+\only<3>{\includegraphics[width=0.9\textwidth]{images/relay_not_2.png}}
+\only<4>{\includegraphics[width=0.9\textwidth]{images/relay_not_3.png}}
+\end{frame}
+
+\end{document}
