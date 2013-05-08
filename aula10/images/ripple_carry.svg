@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="266.50015"
+   height="87.274284"
+   id="svg14372"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="ripple_carry.svg">
+  <defs
+     id="defs14374">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective14380" />
+    <inkscape:perspective
+       id="perspective14390"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="112.3221"
+     inkscape:cy="31.0526"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="696"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata14377">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-377.80489,-506.51064)">
+    <g
+       id="g15185"
+       transform="translate(-4,-14)">
+      <text
+         style="font-size:15px"
+         y="565.42438"
+         x="380.77127"
+         id="text10309">
+        <tspan
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique"
+           x="380.77127"
+           y="565.42438"
+           id="tspan10311">c</tspan>
+      </text>
+      <text
+         style="font-size:15px"
+         y="567.29309"
+         x="386.30627"
+         id="text10313">
+        <tspan
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique"
+           x="386.30627"
+           y="567.29309"
+           id="tspan10315">out</tspan>
+      </text>
+    </g>
+    <g
+       id="g15159"
+       transform="translate(-24,-2)">
+      <text
+         style="font-size:15px"
+         y="517.1532"
+         x="437.73627"
+         id="text10389">
+        <tspan
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique"
+           x="437.73627"
+           y="517.1532"
+           id="tspan10391">a</tspan>
+      </text>
+      <text
+         style="font-size:15px"
+         y="519.02069"
+         x="443.72125"
+         id="text10393">
+        <tspan
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique"
+           x="443.72125"
+           y="519.02069"
+           id="tspan10395">i</tspan>
+      </text>
+    </g>
+    <g
+       id="g15191"
+       transform="translate(-24,-24)">
+      <text
+         style="font-size:15px"
+         y="615.73431"
+         x="454.4595"
+         id="text10661">
+        <tspan
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique"
+           x="454.4595"
+           y="615.73431"
+           id="tspan10663">s</tspan>
+      </text>
+      <text
+         style="font-size:15px"
+         y="617.60187"
+         x="459.23325"
+         id="text10665">
+        <tspan
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique"
+           x="459.23325"
+           y="617.60187"
+           id="tspan10667">i</tspan>
+      </text>
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       id="path14199"
+       d="m 423.17176,551.25671 -25.12763,0"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:#d7e3f4;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 435.2263,569.35866 0,11.29502"
+       id="path14207"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#89abdf;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 421.22348,539.53675 0,-15.12763"
+       id="path14253" />
+    <path
+       id="path14255"
+       d="m 441.26669,539.53675 0,-15.12763"
+       style="fill:#89abdf;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g15170"
+       transform="translate(-24,-2)">
+      <text
+         style="font-size:15px"
+         id="text15133"
+         x="462.48502"
+         y="517.1532">
+        <tspan
+           id="tspan15135"
+           y="517.1532"
+           x="462.48502"
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique">b</tspan>
+      </text>
+      <text
+         style="font-size:15px"
+         id="text15137"
+         x="468.47"
+         y="519.02069">
+        <tspan
+           id="tspan15139"
+           y="519.02069"
+           x="468.47"
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique">i</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(88.40865,-14)"
+       id="g15197">
+      <text
+         id="text15199"
+         x="380.77127"
+         y="565.42438"
+         style="font-size:15px">
+        <tspan
+           id="tspan15201"
+           y="565.42438"
+           x="380.77127"
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique">c</tspan>
+      </text>
+      <text
+         id="text15203"
+         x="386.30627"
+         y="567.29309"
+         style="font-size:15px">
+        <tspan
+           id="tspan15205"
+           y="567.29309"
+           x="386.30627"
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique">in</tspan>
+      </text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 468.18446,551.25671 -25.12763,0"
+       id="path15207"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g15285">
+      <rect
+         style="fill:#afc6e9;fill-opacity:1;stroke:none"
+         id="rect14193"
+         width="41.909439"
+         height="33.61861"
+         x="413.10989"
+         y="536.76465" />
+      <text
+         id="text14360"
+         y="560.94379"
+         x="424.60898"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10"
+         xml:space="preserve"><tspan
+           style="font-size:16px"
+           y="560.94379"
+           x="424.60898"
+           id="tspan14362"
+           sodipodi:role="line">FA</tspan></text>
+    </g>
+    <g
+       transform="translate(184.92857,-10)"
+       id="g15214">
+      <text
+         id="text15216"
+         x="380.77127"
+         y="565.42438"
+         style="font-size:15px">
+        <tspan
+           id="tspan15218"
+           y="565.42438"
+           x="380.77127"
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique">c</tspan>
+      </text>
+      <text
+         id="text15220"
+         x="386.30627"
+         y="567.29309"
+         style="font-size:15px">
+        <tspan
+           id="tspan15222"
+           y="567.29309"
+           x="386.30627"
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique">out</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(164.92857,-2)"
+       id="g15224">
+      <text
+         id="text15226"
+         x="437.73627"
+         y="517.1532"
+         style="font-size:15px">
+        <tspan
+           id="tspan15228"
+           y="517.1532"
+           x="437.73627"
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique">a</tspan>
+      </text>
+      <text
+         id="text15230"
+         x="443.72125"
+         y="519.02069"
+         style="font-size:15px">
+        <tspan
+           id="tspan15232"
+           y="519.02069"
+           x="443.72125"
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique">0</tspan>
+      </text>
+    </g>
+    <g
+       id="g15234"
+       transform="translate(164.92857,-24)">
+      <text
+         id="text15236"
+         x="454.4595"
+         y="615.73431"
+         style="font-size:15px">
+        <tspan
+           id="tspan15238"
+           y="615.73431"
+           x="454.4595"
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique">s</tspan>
+      </text>
+      <text
+         id="text15240"
+         x="459.23325"
+         y="617.60187"
+         style="font-size:15px">
+        <tspan
+           id="tspan15242"
+           y="617.60187"
+           x="459.23325"
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique">0</tspan>
+      </text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 612.10033,555.25671 -25.12763,0"
+       id="path15244"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       id="path15246"
+       d="m 624.15487,569.35866 0,11.29502"
+       style="fill:#d7e3f4;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       id="path15248"
+       d="m 610.15205,539.53675 0,-15.12763"
+       style="fill:#89abdf;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#89abdf;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 630.19526,539.53675 0,-15.12763"
+       id="path15250" />
+    <g
+       transform="translate(164.92857,-2)"
+       id="g15252">
+      <text
+         y="517.1532"
+         x="462.48502"
+         id="text15254"
+         style="font-size:15px">
+        <tspan
+           style="font-size:12.45324993px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10-Oblique"
+           x="462.48502"
+           y="517.1532"
+           id="tspan15256">b</tspan>
+      </text>
+      <text
+         y="519.02069"
+         x="468.47"
+         id="text15258"
+         style="font-size:15px">
+        <tspan
+           style="font-size:8.71724987px;font-style:oblique;font-variant:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:LMSans8;-inkscape-font-specification:LMSans8-Oblique"
+           x="468.47"
+           y="519.02069"
+           id="tspan15260">0</tspan>
+      </text>
+    </g>
+    <g
+       id="g15290"
+       transform="translate(189.28571,0)">
+      <rect
+         y="536.76465"
+         x="413.10989"
+         height="33.61861"
+         width="41.909439"
+         id="rect15292"
+         style="fill:#afc6e9;fill-opacity:1;stroke:none" />
+      <text
+         xml:space="preserve"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10"
+         x="422.46613"
+         y="560.94379"
+         id="text15294"><tspan
+           sodipodi:role="line"
+           id="tspan15296"
+           x="422.46613"
+           y="560.94379"
+           style="font-size:16px">HA</tspan></text>
+    </g>
+  </g>
+</svg>
