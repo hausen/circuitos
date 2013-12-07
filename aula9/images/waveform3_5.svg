@@ -15,10 +15,10 @@
    width="380.59586"
    height="168.06117"
    xml:space="preserve"
-   sodipodi:docname="waveform3_4.svg"><metadata
+   sodipodi:docname="waveform3_5.svg"><metadata
      id="metadata8"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
      id="defs6"><marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
@@ -122,7 +122,7 @@
      inkscape:guide-bbox="true"
      inkscape:zoom="2"
      inkscape:cx="212.81274"
-     inkscape:cy="100.12946"
+     inkscape:cy="99.12946"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -257,6 +257,7 @@
 
 
 
+
 <path
    sodipodi:nodetypes="cc"
    id="path5477"
@@ -289,6 +290,7 @@
      y="-20.322218"
      x="30.791376"
      sodipodi:role="line">B</tspan></text>
+
 <path
    id="path5495"
    d="m 83.283853,-43.250971 0,124.050971"
@@ -329,6 +331,7 @@
      y="24.477787"
      id="tspan5517"
      style="font-weight:bold">C</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-size:13.63599968px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10"
@@ -340,6 +343,7 @@
      id="tspan5521"
      x="22.5"
      y="33.561172">0  1  0    0       1     0  1  0      1       1   0   1    0   1   1</tspan></text>
+
 <text
    transform="scale(1,-1)"
    id="text5523"
@@ -351,6 +355,7 @@
      x="45.254623"
      id="tspan5525"
      sodipodi:role="line">0  1  0    1       1     1  1  1      0       1   0   0    1   1   0</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-size:10.90880013px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:LMSans10;-inkscape-font-specification:LMSans10"
@@ -361,5 +366,6 @@
      sodipodi:role="line"
      id="tspan5529"
      x="45.254623"
-     y="24.975981">0  1  0    0       1     0  1  0      0       1   0   0    1   1   0</tspan></text>
+     y="24.975981">0  1  0    0       1     0  1  0      0       1   0   0    0   1   0</tspan></text>
+
 </g></svg>
