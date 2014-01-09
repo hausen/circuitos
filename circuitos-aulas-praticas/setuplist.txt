@@ -1,0 +1,20 @@
+### setuplist.txt first line must be a comment
+blank.txt Apagar Tudo
++Aula 7
+simple.txt Circuito Simples
+simple-series.txt Circuito em Serie
+simple-parallel.txt Circuito em Paralelo
+series-parallel1.txt Circuito Serie-Paralelo 1
+series-parallel2.txt Circuito Serie-Paralelo 2
+simple-not.txt 1 Chave 2 Posicoes
+simple-xor.txt 2 Chaves 2 Posicoes
+-
++Aula 8
+relay.txt Relay
+relay2.txt Relay 2
+relay3.txt Relay 3
+porta-not.txt Porta Lógica 1
+porta-and.txt Porta Lógica 2
+porta-or.txt Porta Lógica 3
+portas-logicas.txt Portas Logicas
+-
