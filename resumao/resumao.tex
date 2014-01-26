@@ -1,0 +1,411 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese,brazil]{babel}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{amssymb,textcomp}
+\usepackage{calc}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+% example: http://tex.stackexchange.com/questions/32839/drawing-circuit-diagrams-with-logic-gates-in-latex
+
+\newcommand{\bit}[1]{\raisebox{-4pt}{\begin{picture}(26,14)\put(0,0){\raisebox{5pt}{\hbox to 26pt{\hfill#1\hfill}}}\put(0,0){\line(1,0){26}}\put(0,0){\line(0,1){14}}\put(26,0){\line(0,1){14}}\put(0,14){\line(1,0){26}}\end{picture}}}
+\begin{document}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\def\not{\overline}
+
+\begin{center}
+\LARGE{Resumão de Circuitos Digitais}
+\end{center}
+
+\section{Introdução}
+
+\textbf{Representação de números inteiros}: considere um inteiro representado em uma palavra de dados com $n$ bits \bit{$a_{n-1}$}\bit{$a_{n-2}$}\ldots\bit{$a_{1}$}\bit{$a_0$}. Dependendo do formato adotado, o seu valor será\ldots
+\begin{center}
+\begin{tabular}{c c}
+      formato       & valor \\
+\hline
+inteiro sem sinal   & $(a_{n-1} a_{n-2} \ldots a_1 a_0)_2$ \\
+\hline
+sinal-magnitude     & se $a_{n-1} = 0$, $\; +(a_{n-2} \ldots a_1 a_0)_2$ \\
+                    & se $a_{n-1} = 1$, $\; -(a_{n-2} \ldots a_1 a_0)_2$ \\
+\hline
+complemento de dois & se $a_{n-1} = 0$, $\; +(a_{n-2} \ldots a_1 a_0)_2$ \hspace*{5.15ex} \\
+                    & se $a_{n-1} = 1$, $\; -[(\overline{a_{n-2}} \ldots \overline{a_1} \; \overline{a_0})_2 + 1]$
+\end{tabular}
+\end{center}
+
+\textbf{Operações lógicas}: negação (not) $\not{X}$ \hfill conjunção (and) $X \cdot Y$ \hfill disjunção (or) $X+Y$ \\
+\phantom{\textbf{Operações lógicas}: }disjunção exclusiva (xor) $X \oplus Y$\\
+\phantom{\textbf{Operações lógicas}: }Obs.: $X \oplus Y = \not{X} Y + X \not{Y}$
+
+\textbf{Portas lógicas}: circuitos que executam operações lógicas.
+
+\begin{tabular}{cccc}
+    \raisebox{1ex}{
+        \begin{tikzpicture}[label distance=2mm]
+            \node at (0,0) (input) {$X$};
+            \node[not gate US, draw] at (1,0) (gate) {};
+            \node at (2.25,0) (output) {$X$};
+            \draw (input) -- (gate.input);
+            \draw (gate.output) -- (output);
+        \end{tikzpicture}
+    }
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[and gate US, draw, anchor=input 1, logic gate inputs=nnnn] at (0.85,0.8) (gate) {};
+        \node at (3,0.55) (output) {$X \cdot Y$};
+        \draw (input1) -- (gate.input 1);
+        \draw (input2) -- (gate.input 4);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[or gate US, draw, anchor=input 1, logic gate inputs=nnnn] at (0.85,0.8) (gate) {};
+        \node at (3.1,0.55) (output) {$X + Y$};
+        \draw (input1) -- (gate.input 1);
+        \draw (input2) -- (gate.input 4);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[xor gate US, draw, scale=1.7, anchor=input 1] at (0.85,0.7) (gate) {};
+        \node at (3.3,0.55) (output) {$X \oplus Y$};
+        \node at (0.97,0.8) (gtinput1) {};
+        \node at (0.97,0.3) (gtinput2) {};
+        \draw (input1) -- (gtinput1);
+        \draw (input2) -- (gtinput2);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+\\[2ex]
+    % blank space
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[nand gate US, draw, anchor=input 1, logic gate inputs=nnnn] at (0.85,0.8) (gate) {};
+        \node at (3,0.55) (output) {$\not{X \cdot Y}$};
+        \draw (input1) -- (gate.input 1);
+        \draw (input2) -- (gate.input 4);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[nor gate US, draw, anchor=input 1, logic gate inputs=nnnn] at (0.85,0.8) (gate) {};
+        \node at (3.1,0.55) (output) {$\not{X + Y}$};
+        \draw (input1) -- (gate.input 1);
+        \draw (input2) -- (gate.input 4);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+&
+    \begin{tikzpicture}
+        \node at (0,0.8) (input1) {$X$};
+        \node at (0,0.3) (input2) {$Y$};
+        \node[xnor gate US, draw, scale=1.7, anchor=input 1] at (0.85,0.7) (gate) {};
+        \node at (3.4,0.55) (output) {$\not{X \oplus Y}$};
+        \node at (0.97,0.8) (gtinput1) {};
+        \node at (0.97,0.3) (gtinput2) {};
+        \draw (input1) -- (gtinput1);
+        \draw (input2) -- (gtinput2);
+        \draw (gate.output) -- (output);
+    \end{tikzpicture}
+\end{tabular}
+
+\section{Síntese de circuitos digitais combinacionais}
+
+0. Entenda o problema e obtenha a tabela verdade para cada saída.\\
+1. Obtenha e simplifique a expressão lógica para cada saída. Para até $4$ variáveis (ou até $6$ para os muito atentos), é possível simplificar manualmente usando mapas de Karnaugh.\\
+2. Desenhe o diagrama do circuito.\\
+3. Analise o circuito e verifique as saídas.\\
+4. Simulação e montagem (não dá para fazer na prova).
+
+\section{Blocos lógicos básicos}
+
+\begin{minipage}{0.6\textwidth}
+\textbf{Meio-somador (half-adder)}
+\begin{itemize}
+\setlength{\itemsep}{-2pt}
+    \item Entradas: $a_0$, $b_0$, dois bits a serem adicionados.
+    \item Saídas: $s_0$, a soma aritmética das entradas;\\
+    \phantom{Saídas: }$c_{out}$, vai-um.
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{center}
+\begin{picture}(80,90)
+\put(27,75){\line(0,1){15}}   \put(51,75){\line(0,1){15}}
+\put(23,64){$a_0$}            \put(47,64){$b_0$}
+\put(0,46){\line(1,0){15}}  \put(19,38){\rotatebox{90}{\small{$c_{out}$}}}
+\put(32,41){\large{HA}}
+%\put(50,44){\line(0,1){2}}
+%\put(49,45){\line(1,0){2}}
+\put(35,20){$s_0$}
+\put(40,15){\line(0,-1){15}}
+\put(15,15){\framebox(50,60){}}
+\end{picture}
+\end{center}
+\end{minipage}
+
+\vspace{12pt}
+
+\begin{minipage}{0.6\textwidth}
+\textbf{Somador completo (full-adder)}
+\begin{itemize}
+\setlength{\itemsep}{-2pt}
+    \item Entradas: $a_i$, $b_i$, $c_{in}$, três bits a serem somados.
+    \item Saídas: $s_i$, soma aritmética das entradas;\\
+          \phantom{Saídas: }$c_{out}$, vai-um.
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{center}
+\begin{picture}(80,90)
+\put(27,75){\line(0,1){15}}   \put(51,75){\line(0,1){15}}
+\put(23,64){$a_0$}            \put(47,64){$b_0$}
+\put(0,46){\line(1,0){15}}  \put(19,38){\rotatebox{90}{\small{$c_{out}$}}} \put(55,40){\rotatebox{90}{\small{$c_{in}$}}} \put(65,46){\line(1,0){15}}
+\put(32,41){\large{FA}}
+%\put(50,44){\line(0,1){2}}
+%\put(49,45){\line(1,0){2}}
+\put(35,20){$s_0$}
+\put(40,15){\line(0,-1){15}}
+\put(15,15){\framebox(50,60){}}
+\end{picture}
+\end{center}
+\end{minipage}
+
+\newpage
+
+\textbf{Somador completo de $n$ bits}
+\begin{itemize}
+\setlength{\itemsep}{-2pt}
+    \item Entradas: $a_{n-1}$, $a_{n-2}$, \ldots, $a_1$, $a_0$, bits que representam um inteiro $A$;\\
+    \phantom{Entradas: }$b_{n-1}$, $b_{n-2}$, \ldots, $b_1$, $b_0$, bits que representam um inteiro $B$;\\
+    \phantom{Entradas: }$c_{in}$, vem-um.
+    \item Saídas: $s_{n-1}$, $s_{n-2}$, \ldots, $s_1$, $s_0$, representando o resultado da soma aritmética $A+B+c_{in}$;\\
+    \phantom{Saídas: }$c_{out}$, vai-um.
+\end{itemize}
+Os inteiros $A$ e $B$ ambos devem estar no formato inteiro sem sinal ou no formato complemento de dois. A saída estará no mesmo formato da entrada.
+
+\textbf{Decodificador $k$ para $2^k$} -- Entradas: $a_{k-1}$, $a_{k-2}$, \ldots, $a_1$, $a_0$, as entradas de endereço. Saídas: $X_0, X_1$, \ldots, $X_{2^k-1}$, onde cada combinação de bits da entrada ativa apenas uma saída $X_{j}$ tal que $j = (a_{k-1} a_{k-2} \ldots a_1 a_0)_2$.
+
+\textbf{Multiplexador (mux) $2^k$ para $1$} -- Entradas: $I_0$, $I_1$, \ldots, $I_{2^k-1}$, as entradas de dados; $s_{k-1}$, $s_{k-2}$, \ldots, $s_1$, $s_0$, as entradas de seleção. Saída: $X$, onde $X$ tem o valor da entrada $I_j$ tal que $j = (s_{k-1} s_{k-2} \ldots s_1 s_0)_2$. O mux funciona como uma chave seletora.
+
+\section{Circuitos digitais sequenciais}
+
+\newlength{\lengthOfDiagdown}
+\settowidth{\lengthOfDiagdown}{$\diagdown$}
+\def\X{$\diagdown$\hspace{-\lengthOfDiagdown}$\diagup$}
+
+\def\CK{%
+\begin{picture}(10,10)%
+\thicklines%
+\put(0,10){\line(1,0){5}}%
+\put(5,10){\line(0,-1){10}}%
+\put(5,0){\line(1,0){5}}%
+\put(5,10){\vector(0,-1){9}}%
+\end{picture}%
+}
+
+Notação: $Q_i$ = estado atual da variável $Q$; \hspace{3ex} $Q_{i-1}$ = estado anterior da variável $Q$; \hspace{3ex} \X{} = \emph{don't care}
+
+\textbf{Latches}: circuitos digitais sequenciais básicos, que guardam informação sobre o estado anterior. Cada um dos latches abaixo possui uma saída $Q$, e uma saída com estado inverso $\not{Q}$.
+
+\vspace{12pt}
+
+\begin{minipage}{0.32\textwidth}
+\begin{center}
+Latch R-S (Reset-Set)\\[6pt]
+
+\begin{picture}(100,63)
+\put(10,52){\line(1,0){15}} \put(30,48){$R$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(10,16){\line(1,0){15}} \put(30,12){$S$} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6pt]
+
+\begin{tabular}{cc||cl}
+$R$ & $S$ & $Q_i$ & \\
+\cline{1-4}
+ 0  &  0  & $Q_{i-1}$ & \footnotesize{(mantém)} \\
+ 0  &  1  &   1   & \footnotesize{(set)} \\
+ 1  &  0  &   0   & \footnotesize{(reset)} \\
+ 1  &  1  & \multicolumn{2}{c}{entrada proibida}
+\end{tabular}
+\end{center}
+\end{minipage}%
+%
+\vline%
+%
+\begin{minipage}{0.36\textwidth}
+\begin{center}
+Latch R-S c/ Enable\\[6pt]
+
+\begin{picture}(100,63)
+\put(10,52){\line(1,0){15}} \put(30,48){$R$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(10,34){\line(1,0){15}} \put(30,30){$En$}
+\put(10,16){\line(1,0){15}} \put(30,12){$S$} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6ex]
+
+    \begin{minipage}{0.8\textwidth}
+     Quando $En = 0$, as saídas não se alteram. Quando $En = 1$, funciona
+     como o latch R-S comum.
+    \end{minipage}
+
+\end{center}
+\end{minipage}%
+%
+\vline%
+%
+\begin{minipage}{0.32\textwidth}
+\begin{center}
+Latch D (Data)\\[6pt]
+
+\begin{picture}(100,63)
+\put(10,52){\line(1,0){15}} \put(30,48){$D$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(10,16){\line(1,0){15}} \put(30,12){$En$} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6pt]
+
+\begin{tabular}{cc||cl}
+$En$ & $D$ & $Q_i$ & \\
+\cline{1-4}
+ 0  &  0  & $Q_{i-1}$ & \footnotesize{(mantém)} \\
+ 0  &  1  & $Q_{i-1}$ & \footnotesize{(mantém)} \\
+ 1  &  0  &   0   & \footnotesize{(reset)} \\
+ 1  &  1  &   1   & \footnotesize{(set)} \\
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\vspace{12pt}
+
+\def\dowCK{$1\!\rightarrow\!0$}
+
+\textbf{Flip-flops}: latches sensíveis a uma das bordas do \emph{clock}. O símbolo \CK{} denota sensibilidade à borda de descida (transição $1 \rightarrow 0$).
+
+\vspace{12pt}
+
+\begin{minipage}{0.32\textwidth}
+\begin{center}
+Flip-flop R-S\\[6pt]
+
+\begin{picture}(120,63)(-10,0)
+\put(10,52){\line(1,0){15}} \put(30,48){$R$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(-10,30){$CK$}\put(10,34){\line(1,0){15}} \put(30,30){\CK}
+\put(10,16){\line(1,0){15}} \put(30,12){$S$} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6pt]
+
+\begin{tabular}{c@{\ \ }c@{\ \ }c||cl}
+$R$ & $S$ &  $CK$  & $Q_i$ & \\
+\cline{1-4}
+ 0  &  0  &   \X   & $Q_{i-1}$ & \footnotesize{(mantém)} \\
+ 0  &  1  & \dowCK &   1   & \footnotesize{(set)} \\
+ 1  &  0  & \dowCK &   0   & \footnotesize{(reset)} \\
+ 1  &  1  & \dowCK & \multicolumn{2}{c}{entrada proibida}
+\end{tabular}
+\end{center}
+\end{minipage}%
+%
+\vline%
+%
+\begin{minipage}{0.32\textwidth}
+\begin{center}
+Flip-flop D\\[6pt]
+
+\begin{picture}(120,63)(-10,0)
+\put(10,52){\line(1,0){15}} \put(30,48){$D$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(-10,12){$CK$} \put(10,16){\line(1,0){15}} \put(30,12){\CK} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6pt]
+
+\vspace{5.8ex}
+
+\begin{tabular}{cc||cl}
+$D$ & $CK$ & $Q_i$ & \\
+\cline{1-4}
+ 0  & \dowCK  &   0   & \footnotesize{(reset)} \\
+ 1  & \dowCK  &   1   & \footnotesize{(set)} \\
+\end{tabular}
+\end{center}
+\end{minipage}%
+%
+\vline%
+%
+\begin{minipage}{0.32\textwidth}
+\begin{center}
+Flip-flop J-K (Jump-Kill)\\[6pt]
+
+\begin{picture}(120,63)(-10,0)
+\put(10,52){\line(1,0){15}} \put(30,48){$J$} \put(60,48){$Q$} \put(75,52){\line(1,0){15}}
+\put(-10,30){$CK$}\put(10,34){\line(1,0){15}} \put(30,30){\CK}
+\put(10,16){\line(1,0){15}} \put(30,12){$K$} \put(60,12){$\overline{Q}$} \put(75,16){\line(1,0){15}} 
+\put(25,3){\framebox(50,60){}}
+\end{picture}\\[6pt]
+
+\begin{tabular}{c@{\ \ }c@{\ \ }c||cl}
+$J$ & $K$ &  $CK$  & $Q_i$     & \\
+\cline{1-4}
+ 0  &  0  &   \X   & $Q_{i-1}$     & \footnotesize{(mantém)} \\
+ 0  &  1  & \dowCK &   0       & \footnotesize{(kill)} \\
+ 1  &  0  & \dowCK &   1       & \footnotesize{(jump)} \\
+ 1  &  1  & \dowCK & $\not{Q_{i-1}}$ & \footnotesize{(inverte)} \\
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\newpage
+
+\def\pageW{510}
+\def\pageH{756}
+
+\def\cross{\hspace{-2pt}\line(1,0){4}\hspace{-2pt}\raisebox{2pt}{\line(0,-1){4}}}
+
+\begin{picture}(\pageW,\pageH)
+{\color{gray}
+\thinlines
+\multiput(0,0)(4,0){130}{\line(0,1){\pageH}}
+\multiput(0,0)(0,4){190}{\line(1,0){\pageW}}
+}
+\put(0,0){\scalebox{4}{Somador $n$ bits}}
+
+\newlength{\tmpX}
+\newlength{\tmpY}
+\newlength{\leadLabelDistance}
+\setlength{\leadLabelDistance}{3pt}
+
+% \southLead{x}{y}{length}{label}
+\newcommand{\southLead}[4]{
+\settowidth{\tmpX}{#4}
+\settoheight{\tmpY}{#4}
+\addtolength{\tmpY}{\leadLabelDistance}
+
+\put(#1,#2){%
+\scalebox{4}{%
+\raisebox{15pt}{\vector(0,-1){15}}% draw lead
+\hspace{-0.5\tmpX}% center
+\raisebox{-\tmpY}{#4}%
+\hspace{-0.5\tmpX}% center
+}% end scalebox
+}% end put
+} %end newcommand
+
+\southlead{50}{50}{$a_0$}
+
+\thicklines
+\multiput(0,0)(40,0){13}{\line(0,1){\pageH}}
+\multiput(0,0)(0,40){19}{\line(1,0){\pageW}}
+\end{picture}
+
+\end{document}
