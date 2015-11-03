@@ -235,11 +235,12 @@ deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$
 }
 
 \newcommand{\cknode}[3]{
-  \node[matrix,anchor=west] (#1) at (#2,#3) {\draw[->] (0,0.2) -- (0.2,0.2) -- (0.2,0); \draw[-] (0.2,0) -- (0.2,-0.2) -- (0.4,-0.2); \\ };
+  \node[matrix,anchor=west] (#1) at (#2,#3) {\draw[-stealth] (0,0.2) -- (0.2,0.2) -- (0.2,-0.05); \draw[-] (0.2,0) -- (0.2,-0.2) -- (0.4,-0.2); \\ };
 }
 
 \begin{center}
 \begin{tikzpicture}
+\tikzset{>=triangle 45}
 %\draw[help lines, thick] (0,0) grid (14,6);
 
 \draw[thick] (0.5,1) -- (5.5,1) -- (5.5,6) -- (0.5,6);
@@ -382,6 +383,7 @@ abaixo.
 
 \begin{center}
 \begin{tikzpicture}
+\tikzset{>=triangle 45}
 %\draw[help lines, thick] (0,0) grid (8,8);
 
 \stereobox{1}{0}{7}{7}
@@ -469,6 +471,7 @@ A memória deste exemplo é caracterizada como uma memória \emph{estática},
 \tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
 \def\buswidth#1{\phantom{$#1$} \raisebox{0.5ex}{\rule{1em}{0.4pt}} $#1$}
 \begin{tikzpicture}[y=2\baselineskip,x=2\baselineskip]
+\tikzset{>=stealth}
 %\foreach \i in {0,...,16}
 %{
 %  \draw[thick,color=gray] (0,-\i) -- (16,-\i);
