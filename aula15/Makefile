@@ -1,28 +1,38 @@
 # This makefile is available under a
 # Creative Commons Attribution-Share Alike license (CC BY-SA 2.0).
 # http://creativecommons.org/licenses/by-sa/2.0/
-# Copyright © 2012 Rodrigo Hausen
+# Copyright © 2014 Rodrigo Hausen
 NAME=aula15
 SVGS=$(wildcard images/*.svg)
 IMGS=$(SVGS:.svg=.pdf)
-include ../Makefile.inc
+JPGS=$(wildcard images/*.jpg)
+JPEGS=$(wildcard images/*.jpeg)
 
-$(NAME).pdf: aula15-1.pdf aula15-2.pdf aula15-3.pdf aula15-4.pdf aula15-5.pdf aula15-6.pdf aula15-7.pdf aula15-8.pdf aula15-9.pdf
-	pdftk $^ cat output $@
-
-aula15-%.pdf: aula15-%.tif
-	tiff2pdf $< > $@
+$(NAME).pdf: $(NAME).tex $(IMGS) $(JPGS) $(JPEGS)
+	@if [ -f $(NAME).nav ]; then \
+		grep inserttotalframenumber $(NAME).nav |sed -e 's/[^0-9]//g' > $(NAME).framesbefore; \
+	fi
+	pdflatex $<
+	@if [ -f $(NAME).nav ]; then \
+		grep inserttotalframenumber $(NAME).nav |sed -e 's/[^0-9]//g' > $(NAME).framesafter; \
+		diff -q $(NAME).framesbefore $(NAME).framesafter > /dev/null || pdflatex $< ; \
+		rm -f $(NAME).framesbefore $(NAME).framesafter; \
+	fi
+	@grep -q -i '^latex warning:.*rerun' $(NAME).log && pdflatex $< || true
+	@grep -q -i '^latex warning:.*rerun' $(NAME).log && pdflatex $< || true
 
 clean:
-	rm -f $(NAME).pdf aula15-*.pdf $(IMGS)
+	rm -f $(NAME).pdf *.aux *.log *.nav *.out *.snm *.toc *.vrb *.framesafter *.framesbefore $(NAME)-handout.pdf $(NAME)-handout.tif $(IMGS)
 
 images/%.pdf: images/%.svg
 	inkscape -z `pwd`/$< --export-pdf=`pwd`/$@
 
-upload: $(NAME).pdf
-	rm -rf tmp/
-	mkdir tmp/
-	mv $(NAME).pdf tmp/
-	make clean
-	echo 'cd $(DIRREPOS) \n mkdir $(NAME) \n cd $(NAME) \n put tmp/$(NAME).pdf \n put *.tex \n put *.sty \n put Makefile \n mkdir images \n cd images \n put images/* \n cd .. \n mkdir circuits \n cd circuits \n put circuits/* \n quit'|sftp $(HOSTREPOS)
-	rm -rf tmp/
+handout: $(NAME)-handout.pdf $(NAME)-handout.tif
+
+$(NAME)-handout.pdf: $(NAME)-handout.tex
+	pdflatex $<
+
+$(NAME)-handout.tif: $(NAME)-handout.pdf
+	gs -dNOPAUSE -sDEVICE=tiffg4 -sOutputFile=/tmp/tmp$(NAME)%02d.tiff -dBATCH -r600 $<
+	tiffcp /tmp/tmp$(NAME)[0-9][0-9]*.tiff $@
+	rm /tmp/tmp$(NAME)[0-9][0-9]*.tiff
