@@ -150,5 +150,6 @@
         \path (\x) node {X};
 }
 
-\def\dontcare{\tikz[baseline=(X.base)]%
-              \node [cross out,draw] (X) {\phantom{$0$}};}
+\def\dontcare{\tikz[baseline=(dontcare.base)]%
+              \node [cross out,draw,inner sep=0.15ex,outer sep=0pt] (dontcare)
+              {\phantom{$0$}};}

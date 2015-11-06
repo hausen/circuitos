@@ -271,6 +271,10 @@ estado, precisaremos de $3$ bits para identificar cada um dos estados.
 \end{tikzpicture}
 \end{center}
 
+\newpage
+
+\vfill
+
 \passo{2} Tabelas de transição.
 
 \begin{center}
@@ -283,15 +287,35 @@ estado, precisaremos de $3$ bits para identificar cada um dos estados.
  0 & 0 & 1 & 0 & 0 & 1 & 1 \\
  0 & 0 & 1 & 1 & 1 & 0 & 0 \\
  0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+ 0 & 1 & 0 & 1 & \dontcare & \dontcare & \dontcare \\
+ 0 & 1 & 1 & 0 & \dontcare & \dontcare & \dontcare \\
+ 0 & 1 & 1 & 1 & \dontcare & \dontcare & \dontcare \\
  1 & 0 & 0 & 0 & 0 & 1 & 0 \\
  1 & 0 & 0 & 1 & 0 & 1 & 1 \\
  1 & 0 & 1 & 0 & 1 & 0 & 0 \\
  1 & 0 & 1 & 1 & 1 & 0 & 0 \\
  1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+ 1 & 1 & 0 & 1 & \dontcare & \dontcare & \dontcare \\
+ 1 & 1 & 1 & 0 & \dontcare & \dontcare & \dontcare \\
+ 1 & 1 & 1 & 1 & \dontcare & \dontcare & \dontcare \\
 \end{tabular}
 \end{center}
 
-\passo{3} obtenção de expressões para $Y_2$, $Y_1$ e $Y_0$.
+Note que algumas combinações para $X Q_2 Q_1 Q_0$ nunca devem ocorrer, pois
+a máquina nunca deverá chegar nos estados 101, 110 nem 111. Nas linhas da
+tabela que correspondem a estados inválidos, as saídas foram marcadas com
+o símbolo \dontcare, chamado \emph{don't care} (não importa), que indica
+que não precisamos nos importar com o estado de $Y_2$, $Y_1$ e $Y_0$ para
+aquelas combinações específicas; nestes casos, podemos atribuir às saídas
+qualquer valor, 1 ou 0, de tal forma que as expressões fiquem mais simples,
+mas mantendo o perfeito funcionamento do circuito.
+
+\vfill
+
+\passo{3} obtenção de expressões para $Y_2$, $Y_1$ e $Y_0$. Note que as
+células marcadas com \dontcare podem ser interpretadas como 1 ou como 0,
+dependendo do caso, de modo a obter as expressões mais simples
+na forma de soma de produtos.
 
 \noindent
 \begin{minipage}{0.275\textwidth}
@@ -335,13 +359,18 @@ $Y_0 = X \Not{Q_1} Q_0 + \Not{X} \; \Not{Q_2} \; \Not{Q_0}$
 
 \end{minipage}%
 
+\vfill
+
 \passo{4} diagrama do circuito.
 
 Usaremos tanto as saídas $Q$ quanto as saídas $\Not{Q}$ de cada flip-flop.
 
-Por enquanto, faremos o circuito sem a detecção dos estados finais (só água
-e água/re\-fri\-ge\-ran\-te). Adicionaremos a detecção destes estados nas
-próximas etapas.
+Na Figura~\ref{fig:vendingmachineincomplete} temos o circuito incompleto,
+ainda sem a detecção dos estados finais (só água e água/re\-fri\-ge\-ran\-te). Adicionaremos a detecção destes estados nas etapas a seguir.
+
+\vfill
+
+\newpage
 
 \newenvironment{vendingmachine}{
 \noindent
@@ -465,6 +494,8 @@ próximas etapas.
 \end{tikzpicture}
 }
 
+\begin{figure}
+\begin{center}
 \begin{vendingmachine}
 
 \draw[->] (dff2q.east) -- ++(-0.1,0) -- ++(0.6,0) --
@@ -475,6 +506,10 @@ próximas etapas.
           node[pos=1,below] (Q0) {$Q_0$} ++(0,-7.5);
 
 \end{vendingmachine}
+\caption{Máquina de estados incompleta.}
+\label{fig:vendingmachineincomplete}
+\end{center}
+\end{figure}
 
 Precisamos, agora, de um circuito combinacional para permitir a seleção de
 \emph{água} quando o estado for 011 ou 100 e \emph{refrigerante} quando o
@@ -510,8 +545,11 @@ $R = Q_2$
 \end{minipage}%
 \hspace*{\fill}\\
 
-O circuito completo da máquina de estados é:\\
+O circuito completo da máquina de estados é mostrado na Figura~%
+\ref{fig:vendingmachinecomplete}.
 
+\begin{figure}
+\begin{center}
 \begin{vendingmachine}
 
 \draw[-] (dff2q.east) -- ++(-0.1,0) -- ++(0.6,0) --
@@ -534,5 +572,8 @@ O circuito completo da máquina de estados é:\\
 \node[anchor=north] (A) at ($(orA.output |- R.north)$) {$A$};
 \draw[->] (orA.output) -- (A);
 \end{vendingmachine}
-
+\caption{Máquina de estados completa, com a detecção dos estados finais.}
+\label{fig:vendingmachinecomplete}
+\end{center}
+\end{figure}
 \end{document}
