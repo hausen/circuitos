@@ -12,6 +12,12 @@
 \usetikzlibrary{automata,positioning,calc,decorations.markings}
 \usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
 
+\newenvironment{absolutelynopagebreak}
+  {\par\nobreak\vfil\penalty0\vfilneg
+   \vtop\bgroup}
+  {\par\xdef\tpd{\the\prevdepth}\egroup
+   \prevdepth=\tpd}
+
 \title{Registradores de Deslocamento e Memórias}
 \author{Rodrigo Hausen}
 \date{}
@@ -39,6 +45,16 @@
   \coordinate (#3ck) at (#1,#2-1);
   \draw (#1+0.2,#2-0.8) -- (#1+0.4,#2-0.8) -- (#1+0.4,#2-1.2) -- (#1+0.6,#2-1.2);
   \draw[->] (#1+0.4,#2-0.8) -- (#1+0.4,#2-1.02);
+}
+
+\newcommand*{\muxtwor}[3]{%
+  \node[anchor=west] (#3i0) at (#1,#2) {{\small$I_0$}};
+  \node[anchor=west] (#3i1) at (#1,#2+1) {{\small$I_1$}};
+  \draw[thick] (#3i0.west) -- ++(0,-0.5) -- ($(#3i0.west)+(1,0)$)
+               -- ($(#3i1.west)+(1,0)$) -- ($(#3i1.west)+(0,0.5)$)
+               -- (#3i0.west);
+  \coordinate (#3sel) at ($(#3i1.west)+(0.5,0.25)$);
+  \coordinate (#3out) at ($(#3i0.west)!0.5!(#3i1.west)+(1,0)$);
 }
 
 \newcommand*{\branch}[3]{\node[mark size=1.5pt,inner sep=-2pt] (#3) at (#1-0.05,#2) {\pgfuseplotmark{*}};}
@@ -110,6 +126,7 @@ Pela observação das tabelas verdade, verificamos imediatamente que:
   Y_0 & = & Q_1
 \end{eqnarray*}
 
+\begin{absolutelynopagebreak}
 \emph{Passo quatro}: diagrama do circuito.
 \begin{center}
 \begin{tikzpicture}
@@ -132,6 +149,7 @@ Pela observação das tabelas verdade, verificamos imediatamente que:
 \path[->] (dff2q) edge node {} (Q0);
 \end{tikzpicture}
 \end{center}
+\end{absolutelynopagebreak}
 \end{sol}
 
 O circuito acima é chamado \emph{registrador de deslocamento} de $2$ bits
@@ -221,11 +239,138 @@ de onda para as saídas $Q_0$, $Q_1$, $Q_2$ e $Q_3$.
 \end{tikzpicture}
 \end{center}
 
-\subsection{Para que serve um registrador de deslocamento?}
+\begin{exer}
+\begin{absolutelynopagebreak}
+Circuito para um registrador de deslocamento paralelo para
+série de $4$ bits:
 
-Estudo de caso de uso: suponha que você possua um
-processador/microcontrolador/Arduino com apenas $3$ saídas disponíveis e
-deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$.
+\noindent
+\resizebox{\textwidth}{!}{
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+\begin{tikzpicture}
+\Dff{1}{2}{dff1}
+\Dff{5}{2}{dff2}
+\Dff{9}{2}{dff3}
+\Dff{13}{2}{dff4}
+\muxtwor{3.5}{2}{mux1}
+\muxtwor{7.5}{2}{mux2}
+\muxtwor{11.5}{2}{mux3}
+
+\node[thick,and gate US,draw,anchor=output,logic gate inputs=nn,rotate=-90]
+  (andd0) at ($(dff1d.west)+(-0.5,0.5)$) {};
+
+\node[anchor=north] (d0) at (andd0.input 1 |- 0.5,5.5) {$d_3$};
+\node[anchor=north] (d1) at (3,5.5) {$d_2$};
+\node[anchor=north] (d2) at (7,5.5) {$d_1$};
+\node[anchor=north] (d3) at (11,5.5) {$d_0$};
+
+\draw(d0) |- (andd0.input 1);
+\draw(andd0) |- (dff1d);
+\draw(d1) |- (mux1i1);
+\draw(d2) |- (mux2i1);
+\draw(d3) |- (mux3i1);
+
+\draw (dff1q) -- (mux1i0);
+\draw (mux1out) -| ($(dff2d.west)!0.5!(mux1out)$) |- (dff2d.west);
+
+\draw (dff2q) -- (mux2i0);
+\draw (mux2out) -| ($(dff3d.west)!0.5!(mux2out)$) |- (dff3d.west);
+
+\draw (dff3q) -- (mux3i0);
+\draw (mux3out) -| ($(dff4d.west)!0.5!(mux3out)$) |- (dff4d.west);
+
+\node[anchor=east] (Ck) at (-0.5,0) {$Ck$};
+\draw (Ck) -- coordinate(branch1) (Ck -| d0) node[branch] {} |- (dff1ck);
+\draw (branch1) -- coordinate(branch2) (branch1 -| mux1sel) node[branch] {}
+      |- (dff2ck);
+\draw (branch2) -- coordinate(branch3) (branch2 -| mux2sel) node[branch] {}
+      |- (dff3ck);
+\draw (branch3) -- coordinate(branch4) (branch3 -| mux3sel)
+      |- (dff4ck);
+
+\node[anchor=east] (ldsh) at (-0.5,4) {$\overline{SH}/LD$};
+\draw (ldsh) -| node[branch] {} (andd0.input 2);
+\draw (ldsh) -- coordinate (branch5) (ldsh -| mux1sel) node[branch] {}
+      -- (mux1sel);
+\draw (branch5) -- coordinate (branch6) (branch5 -| mux2sel) node[branch] {}
+      -- (mux2sel);
+\draw (branch5) -| (mux3sel);
+
+\draw (dff4q) -- ++(1,0) node[anchor=west] {$d_{out}$};
+
+\end{tikzpicture}
+}% end resizebox
+\end{absolutelynopagebreak}
+
+Neste registrador de deslocamento, a entrada $\overline{SH}/LD$
+(``\emph{SHift or LoaD}'')  indica qual operação será realizada:
+\begin{itemize}
+  \item se $\overline{SH}/LD = 1$ será feito o carregamento (\emph{load})
+        dos bits de dados no registrador: na próxima borda de descida do
+        clock, os bits $d_3 \ldots d_0$ são armazenados nos flip-flops
+        e o bit $d_0$ será colocado na saída $d_{out}$.
+  \item se $\overline{SH}/LD = 0$ será feito o deslocamento (\emph{shift})
+        dos bits para a saída: a cada borda negativa do clock, um
+        bit de dado será colocado na saída do clock, na sequência
+        $d_1, d_2, d_3, 0, 0, \ldots$.
+
+Esboce o diagrama de forma de onda para o carregamento do dado
+$d_3 d_2 d_1 d_0 = 1011$ e seu deslocamento para a saída.
+\end{itemize}
+\end{exer}
+
+\begin{center}
+\begin{tikzpicture}
+%\draw[help lines, thick] (0,0) grid (13,9);
+
+\node[anchor=east] (Ck) at (0,8.5) {$Ck$};
+\foreach \i in {0,2,4,6,8,10}
+{
+  \draw[dashed] (\i+2,-1.5) -- (\i+2,9);
+  \clockcycle{\i}{8}
+}
+
+\node[anchor=east] (shld) at (0,7.0) {$\overline{SH}/LD$};
+\draw[very thick] (0,6.5) -- ++(1,0) -- ++(0,1) -- ++(2,0)
+     -- ++(0,-1) -- ++(10,0);
+
+\node[anchor=east] (d3) at (0,5.5) {$d_3$};
+\draw[very thick] (0,5) -- ++(1,0) -- ++(0,1) -- coordinate(d3in) ++(2,0)
+     -- ++(0,-1) -- ++(10,0);
+\node at (d3 -| d3in) {\textbf{1}};
+
+\node[anchor=east] (d2) at (0,4.0) {$d_2$};
+\draw[very thick] (0,3.5) -- ++(1,0) -- ++(0,0) -- coordinate(d2in) ++(2,0)
+     -- ++(0,0) -- ++(10,0);
+\node at (d2 -| d2in) {\textbf{0}};
+
+\node[anchor=east] (d1) at (0,2.5) {$d_1$};
+\draw[very thick] (0,2) -- ++(1,0) -- ++(0,1) -- coordinate(d1in) ++(2,0)
+     -- ++(0,-1) -- ++(10,0);
+\node at (d1 -| d1in) {\textbf{1}};
+
+\node[anchor=east] (d0) at (0,1.0) {$d_0$};
+\draw[very thick] (0,.5) -- ++(1,0) -- ++(0,1) -- coordinate(d0in) ++(2,0)
+     -- ++(0,-1) -- ++(10,0);
+\node at (d0 -| d0in) {\textbf{1}};
+
+\node at (2,0) {Saída:};
+
+\node[anchor=east] (dout) at (0,-1.0) {$d_{out}$};
+\draw[very thick] (0,-1.5) -- ++(2,0) -- ++(0,1) -- coordinate(d0out) ++(2,0)
+     -- ++(0,0) -- coordinate(d1out) ++(2,0) -- ++(0,-1)
+     -- coordinate(d2out) ++(2,0) -- ++(0,1) -- coordinate(d3out) ++(2,0)
+     -- ++(0,-1) -- ++(3,0);
+
+\node at (dout -| d0out) {\textbf{1}};
+\node at (dout -| d1out) {\textbf{1}};
+\node at (dout -| d2out) {\textbf{0}};
+\node at (dout -| d3out) {\textbf{1}};
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
 
 \newcommand{\stereobox}[5][]{
   \draw[thick] (#2,#3) rectangle ++(#4-0.2,#5-0.2) node[pos=.5] {#1};
@@ -237,6 +382,107 @@ deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$
 \newcommand{\cknode}[3]{
   \node[matrix,anchor=west] (#1) at (#2,#3) {\draw[-stealth] (0,0.2) -- (0.2,0.2) -- (0.2,-0.05); \draw[-] (0.2,0) -- (0.2,-0.2) -- (0.4,-0.2); \\ };
 }
+
+
+\subsection{Para que servem registradores de deslocamento?}
+
+\textbf{Estudo de caso de uso 1:} controles do NES (Nintendo Entertainment System) e do SNES (Super Nintendo Entertainment System).
+
+O controle padrão do NES possui 8 botões ($\leftarrow$, $\uparrow$,
+$\rightarrow$, $\downarrow$, A, B, select, start) e o do SNES possui 12
+(além dos botões do NES, possui X, Y, L e R). Todos os botões podem ser
+acionados simultaneamente e o console de vídeo-game verifica o estado
+deles 60 vezes por segundo.
+
+Para evitar o uso de um cabo com 8 ou 12 fios (isso sem contar com os fios
+de alimentação!), os controles possuem um registrador de deslocamento paralelo
+para série, cujas entradas de dados são o estado dos botões. O sinal
+de controle $\overline{SH}/LD$ e o clock vêm do console, enquanto que a saída
+$d_{out}$ do registrador de deslocamento é retornada do controle para o
+console.
+
+Com a estratégia de transmissão serial do estado dos botões, o cabo que conecta
+os controles ao console precisa de apenas $5$ fios ($\overline{SH}/LD$, $Ck$,
+$d_{out}$, +5V e GND/terra), não importa quantos botões o controle tenha!
+Quanto menos fios um cabo possui, mais barato e flexível ele é, além de ser
+menos propenso a falhas.
+
+Apresentamos abaixo o esquema de ligação interna entre os componentes do
+controle do NES.
+
+\begin{center}
+\begin{tikzpicture}
+\def\txsize{\scriptsize}
+\tikzset{>=triangle 45}
+\node[anchor=east,align=right] (shld) at (-1,2)
+     {$\overline{SH}/LD$\\[-0.3\baselineskip]{\txsize(laranja)}};
+\node[anchor=east,align=right] (ck) at (-1,0)
+     {$Ck$\\[-0.3\baselineskip]{\txsize(vermelho)}};
+
+\node[anchor=north,align=center] (d7) at (1.5,3)
+     {{\txsize(7)}\\$d_7$};
+\draw[<-] (d7.north) -- ++(0,1) node[anchor=south] {$\rightarrow$};
+\node[anchor=north,align=center] (d6) at ($(d7.north)+(0.75,0)$)
+     {{\txsize(6)}\\$d_6$};
+\draw[<-] (d6.north) -- ++(0,1) node[anchor=south] {$\leftarrow$};
+\node[anchor=north,align=center] (d5) at ($(d6.north)+(0.75,0)$)
+     {{\txsize(5)}\\$d_5$};
+\draw[<-] (d5.north) -- ++(0,1) node[anchor=south] {$\downarrow$};
+\node[anchor=north,align=center] (d4) at ($(d5.north)+(0.75,0)$)
+     {{\txsize(4)}\\$d_4$};
+\draw[<-] (d4.north) -- ++(0,1) node[anchor=south] {$\uparrow$};
+\node[anchor=north,align=center] (d3) at ($(d4.north)+(0.75,0)$)
+     {{\txsize(13)}\\$d_3$};
+\draw[<-] (d3.north) -- ++(0,1) node[rotate=45,anchor=south west] {start};
+\node[anchor=north,align=center] (d2) at ($(d3.north)+(0.75,0)$)
+     {{\txsize(14)}\\$d_2$};
+\draw[<-] (d2.north) -- ++(0,1) node[rotate=45,anchor=south west] {select};
+\node[anchor=north,align=center] (d1) at ($(d2.north)+(0.75,0)$)
+     {{\txsize(15)}\\$d_1$};
+\draw[<-] (d1.north) -- ++(0,1) node[anchor=south] {$B$};
+\node[anchor=north,align=center] (d0) at ($(d1.north)+(0.75,0)$)
+     {{\txsize(1)}\\$d_0$};
+\draw[<-] (d0.north) -- ++(0,1) node[anchor=south] {$A$};
+\draw[->] (shld.east) -- ++(1,0) node[anchor=west] (9) {{\txsize(9)}};
+\draw[->] (ck.east) -- ++(1,0) node[anchor=west] (10) {{\txsize(10)}};
+\draw[-{stealth}] ($(10.east)+(0,-0.25)$) -- ++(0.2,0) --
+     coordinate(ckarrow) ++(0,0.25) ;
+\draw(ckarrow) -- ++(0,0.25) -- ++(0.2,0);
+
+\coordinate (bottomleft) at (0,-1);
+
+\draw (bottomleft) -- (0,0 |- d0.north) -- (d0.north)
+      -- ++(1.5,0) coordinate(topright) |- (bottomleft);
+
+\coordinate (bottomright) at (bottomleft -| topright);
+
+\node[align=center,yshift=-\baselineskip,xshift=1em]
+     (4021) at ($(bottomleft)!0.5!(topright)$)
+     {reg. de deslocamento \\ CD4021};
+
+\node[anchor=east] (dout) at (topright |- shld) {\txsize(3)};
+
+\draw[->] (dout.east) -- ++(1,0) node[anchor=west,align=left]
+                                 {$d_{out}$\\[-0.3\baselineskip]
+                                  {\txsize(amarelo)}};
+
+\node[anchor=south] (vcc) at (bottomleft -| d4) {\txsize(16)};
+\node[anchor=south] (vdd) at (bottomleft -| d2) {\txsize(8)};
+
+\draw[<-] (vcc) -- ++(0,-1)
+                   node[anchor=north,align=center]
+                   {+5V \\[-0.3\baselineskip] {\txsize(branco)}};
+
+\draw[<-] (vdd) -- ++(0,-1)
+                   node[anchor=north,align=center]
+                   {GND \\[-0.3\baselineskip] {\txsize(preto)}};
+
+\end{tikzpicture}
+\end{center}
+
+\textbf{Estudo de caso de uso 2:} suponha que você possua um
+processador/micro\-con\-tro\-la\-dor/Ar\-du\-ino com apenas $3$ saídas disponíveis e
+deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -258,7 +504,7 @@ deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$
 \draw[thick] (7.5,4) rectangle ++(6,2)
              node[pos=.5,yshift=\baselineskip,xshift=1em]
                {\small Registrador de deslocamento}
-             node[pos=.5,xshift=1em] {\small$n$ bits};
+             node[pos=.5,xshift=1em] {\small série para paralelo $n$ bits};
 \node[anchor=south] (qn1) at (9,4) {\footnotesize$Q_{n-1}$};
 \node[anchor=south] (qn2) at (10,4) {\footnotesize$Q_{n-2}$};
 \node[anchor=south] (q1) at (12,4) {\footnotesize$Q_{1}$};
@@ -289,6 +535,8 @@ deseja controlar $n > 3$ dispositivos diferentes $d_0$, $d_1$, \ldots, $d_{n-1}$
 
 \end{tikzpicture}
 \end{center}
+
+\newpage
 
 \emph{Exemplo:} diagramas de forma de onda para fazer $d_0 = 1$, $d_1 = 1$, $d_2 = 0$,
 $d_3 = 1$ (ou seja, $d_3 d_2 d_1 d_0 = 1 0 1 1$).
@@ -369,6 +617,8 @@ $d_3 = 1$ (ou seja, $d_3 d_2 d_1 d_0 = 1 0 1 1$).
 O capítulo 9 do livro do Floyd apresenta mais detalhes sobre
 registradores de deslocamento.
 }
+
+\newpage
 
 \section{Memórias}
 
